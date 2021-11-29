@@ -119,6 +119,17 @@ namespace Weather.NET
             return file;
         }
 
+        /// <summary>
+        /// Gets the current weather in a given location.
+        /// More information in https://openweathermap.org/current#geo
+        /// </summary>
+        /// <param name="latitude"> The latitude of the location. </param>
+        /// <param name="longitude"> The longitude of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
+        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns> The output file as a string. </returns>
         public static string GetGeoCoordinates(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
@@ -130,6 +141,34 @@ namespace Weather.NET
 
             var reader = new StreamReader(stream);
             string file = reader.ReadToEnd();
+
+            stream.Close();
+            reader.Close();
+            return file;
+        }
+
+        /// <summary>
+        /// Gets the current weather in a given location asynchronously.
+        /// More information in https://openweathermap.org/current#geo
+        /// </summary>
+        /// <param name="latitude"> The latitude of the location. </param>
+        /// <param name="longitude"> The longitude of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
+        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns> The output file as a string. </returns>
+        public static async Task<string> GetGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        {
+            var client = new WebClient();
+            Stream stream;
+            if (format == "json")
+                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
+            else
+                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+
+            var reader = new StreamReader(stream);
+            string file = await reader.ReadToEndAsync();
 
             stream.Close();
             reader.Close();
