@@ -9,7 +9,7 @@ namespace Weather.NET
     /// Provides the current weather of a specific location.
     /// OpenWeather docs: https://openweathermap.org/current
     /// </summary>
-    public static class Current
+    public static class CurrentWeather
     {
         /// <summary>
         /// Gets the current weather in a given city.
@@ -21,7 +21,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static string GetCityName(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static string GetWithCityName(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -48,7 +48,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetCityNameAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static async Task<string> GetWithCityNameAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -75,7 +75,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static string GetCityId(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static string GetWithCityId(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -102,7 +102,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetCityIdAsync(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static async Task<string> GetWithCityIdAsync(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -130,7 +130,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static string GetGeoCoordinates(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static string GetWithGeoCoordinates(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -158,7 +158,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static async Task<string> GetWithGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -185,7 +185,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static string GetZIPCode(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static string GetWithZIPCode(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -212,7 +212,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetZIPCodeAsync(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static async Task<string> GetWithZIPCodeAsync(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
