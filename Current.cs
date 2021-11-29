@@ -91,5 +91,22 @@ namespace Weather.NET
             reader.Close();
             return file;
         }
+
+        public static async Task<string> GetCityIdAsync(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        {
+            var client = new WebClient();
+            Stream stream;
+            if (format == "json")
+                stream = await client.OpenWriteTaskAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
+            else
+                stream = await client.OpenWriteTaskAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+
+            var reader = new StreamReader(stream);
+            string file = await reader.ReadToEndAsync();
+
+            stream.Close();
+            reader.Close();
+            return file;
+        }
     }
 }
