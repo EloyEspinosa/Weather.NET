@@ -21,7 +21,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static string GetCity(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static string GetCityName(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -31,11 +31,11 @@ namespace Weather.NET
                 stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
             var reader = new StreamReader(stream);
-            string json = reader.ReadToEnd();
+            string file = reader.ReadToEnd();
 
             stream.Close();
             reader.Close();
-            return json;
+            return file;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Weather.NET
         /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
         /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
         /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetCityAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        public static async Task<string> GetCityNameAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
             var client = new WebClient();
             Stream stream;
@@ -58,11 +58,38 @@ namespace Weather.NET
                 stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
             var reader = new StreamReader(stream);
-            string json = await reader.ReadToEndAsync();
+            string file = await reader.ReadToEndAsync();
 
             stream.Close();
             reader.Close();
-            return json;
+            return file;
+        }
+
+        /// <summary>
+        /// Gets the current weather in a given city.
+        /// More information in https://openweathermap.org/current#cityid
+        /// </summary>
+        /// <param name="id"> The city id. More information in http://bulk.openweathermap.org/sample/ </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
+        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns> The output file as a string. </returns>
+        public static string GetCityId(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        {
+            var client = new WebClient();
+            Stream stream;
+            if (format == "json")
+                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
+            else
+                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+
+            var reader = new StreamReader(stream);
+            string file = reader.ReadToEnd();
+
+            stream.Close();
+            reader.Close();
+            return file;
         }
     }
 }
