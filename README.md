@@ -12,7 +12,7 @@ Using the .NET CLI (you just need to download .NET), in your command line, type 
 This will download the package and add the package as a reference. Now you can use the library in your code by just typing ```using Weather.NET;``` at the beginning of your C# code.
 
 ### How to use as a class library.
-This is the harder, and more memory heavy way to do it, but you can edit the code of the library yourself, which can be useful.
+This is not the best way to do it, but you can edit the code of the library yourself, which can be useful.
 
 To download the source code you can easily go to this repository (https://github.com/EloyEspinosa/Weather.NET), then click on the green button that says "Code", and then click on "Download ZIP" and then the download should start.
 
