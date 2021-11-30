@@ -96,5 +96,95 @@ namespace Weather.NET
                 ["Description"] = json.weather.First.description
             };
         }
+
+        /// <summary>
+        /// Gets a description of the weather of a given location.
+        /// More information in https://openweathermap.org/current#geo
+        /// </summary>
+        /// <param name="latitude"> The latitude of the location. </param>
+        /// <param name="longitude"> The longitude of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static Dictionary<string, string> GetWithGeoCoordinates(double latitude, double longitude, string apiKey, string language = "en")
+        {
+            string file = CurrentWeather.GetWithGeoCoordinates(latitude, longitude, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
+
+        /// <summary>
+        /// Gets a description of the weather of a given location asynchronously.
+        /// More information in https://openweathermap.org/current#geo
+        /// </summary>
+        /// <param name="latitude"> The latitude of the location. </param>
+        /// <param name="longitude"> The longitude of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static async Task<Dictionary<string, string>> GetWithGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string language = "en")
+        {
+            string file = await CurrentWeather.GetWithGeoCoordinatesAsync(latitude, longitude, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
+
+        /// <summary>
+        /// Gets a description of the weather of a given location.
+        /// More information in https://openweathermap.org/current#zip
+        /// </summary>
+        /// <param name="zipCode"> The ZIP Code of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static Dictionary<string, string> GeWithZIPCode(string zipCode, string apiKey, string language = "en")
+        {
+            string file = CurrentWeather.GetWithZIPCode(zipCode, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
+
+        /// <summary>
+        /// Gets a description of the weather of a given location asynchronously.
+        /// More information in https://openweathermap.org/current#zip
+        /// </summary>
+        /// <param name="zipCode"> The ZIP Code of the location. </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static async Task<Dictionary<string, string>> GetWithZIPCodeAsync(string zipCode, string apiKey, string language = "en")
+        {
+            string file = await CurrentWeather.GetWithZIPCodeAsync(zipCode, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
     }
 }
