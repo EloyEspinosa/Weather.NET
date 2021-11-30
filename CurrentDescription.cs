@@ -52,5 +52,49 @@ namespace Weather.NET
                 ["Description"] = json.weather.First.description
             };
         }
+
+        /// <summary>
+        /// Gets a description of the weather of a given city.
+        /// More information in https://openweathermap.org/current#cityid
+        /// </summary>
+        /// <param name="id"> The city id. More information in More information in http://bulk.openweathermap.org/sample/ </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static Dictionary<string, string> GetWithCityId(long id, string apiKey, string language = "en")
+        {
+            string file = CurrentWeather.GetWithCityId(id, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
+
+        /// <summary>
+        /// Gets a description of the weather of a given city asynchronously.
+        /// More information in https://openweathermap.org/current#cityid
+        /// </summary>
+        /// <param name="id"> The city id. More information in More information in http://bulk.openweathermap.org/sample/ </param>
+        /// <param name="apiKey"> The api key of the user. </param>
+        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
+        /// <returns>
+        /// A dictionary where ["Title"] is the main title of the weather in english,
+        /// and where ["Description"] is a description of the weather in the language specified.
+        /// </returns>
+        public static async Task<Dictionary<string, string>> GetWithCityIdAsync(long id, string apiKey, string language = "en")
+        {
+            string file = await CurrentWeather.GetWithCityIdAsync(id, apiKey, "json", "standard", language);
+            var json = JsonConvert.DeserializeObject<dynamic>(file);
+            return new Dictionary<string, string>
+            {
+                ["Title"] = json.weather.First.main,
+                ["Description"] = json.weather.First.description
+            };
+        }
     }
 }
