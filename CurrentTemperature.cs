@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Weather.NET

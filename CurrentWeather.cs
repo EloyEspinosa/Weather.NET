@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace Weather.NET
+﻿namespace Weather.NET
 {
     /// <summary>
     /// Provides the current weather of a specific location.
@@ -10,6 +6,13 @@ namespace Weather.NET
     /// </summary>
     public static class CurrentWeather
     {
+        private static readonly HttpClient client;
+
+        static CurrentWeather()
+        {
+            client = new HttpClient();
+        }
+
         /// <summary>
         /// Gets the current weather in a given city.
         /// More information in https://openweathermap.org/current#name
@@ -22,18 +25,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static string GetWithCityName(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = reader.ReadToEnd();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -49,18 +47,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static async Task<string> GetWithCityNameAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = await reader.ReadToEndAsync();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -76,18 +69,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static string GetWithCityId(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = reader.ReadToEnd();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -103,18 +91,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static async Task<string> GetWithCityIdAsync(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = await reader.ReadToEndAsync();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -131,18 +114,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static string GetWithGeoCoordinates(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = reader.ReadToEnd();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -159,18 +137,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static async Task<string> GetWithGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = await reader.ReadToEndAsync();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -186,18 +159,13 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static string GetWithZIPCode(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = client.OpenRead($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = reader.ReadToEnd();
-
-            stream.Close();
-            reader.Close();
             return file;
         }
 
@@ -213,19 +181,48 @@ namespace Weather.NET
         /// <returns> The output file as a string. </returns>
         public static async Task<string> GetWithZIPCodeAsync(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
         {
-            var client = new WebClient();
-            Stream stream;
+            string file;
+
             if (format == "json")
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
             else
-                stream = await client.OpenReadTaskAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
 
-            var reader = new StreamReader(stream);
-            string file = await reader.ReadToEndAsync();
-
-            stream.Close();
-            reader.Close();
             return file;
+        }
+
+        private static string ReadWebpage(string uri)
+        {
+            try
+            {
+                HttpResponseMessage response = client.GetAsync(uri).Result;
+                response.EnsureSuccessStatusCode();
+                return response.Content.ReadAsStringAsync().Result;
+            }
+
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("\nInternal Http Request Exception Caught!");
+                Console.WriteLine($"Message: {e.Message}");
+                throw new HttpRequestException(e.Message);
+            }
+        }
+
+        private static async Task<string> ReadWebpageAsync(string uri)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("\nInternal Http Request Exception Caught!");
+                Console.WriteLine($"Message: e.Message");
+                throw new HttpRequestException(e.Message);
+            }
         }
     }
 }
