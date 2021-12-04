@@ -7,7 +7,6 @@ namespace Weather.NET
     /// </summary>
     public static class CurrentPressure
     {
-        // TODO: Change return statement.
         /// <summary>
         /// Gets the current atmospheric pressure in a given city.
         /// More information in https://openweathermap.org/current#name
