@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
+    <PackageId>Weather.NET</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Eloy Espinosa</Authors>
   </PropertyGroup>
 
   <ItemGroup>
