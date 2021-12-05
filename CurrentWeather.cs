@@ -1,202 +1,118 @@
-﻿namespace Weather.NET
+using Newtonsoft.Json;
+
+namespace Weather.NET
 {
     /// <summary>
     /// Provides the current weather of a specific location.
     /// OpenWeather docs: https://openweathermap.org/current
     /// </summary>
-    public static class CurrentWeather
+    public class CurrentWeather
     {
-        private static readonly HttpClient client;
-
-        static CurrentWeather()
-        {
-            client = new HttpClient();
-        }
-
         /// <summary>
-        /// Gets the current weather in a given city.
+        /// Gets the current weather of a given city.
         /// More information in https://openweathermap.org/current#name
         /// </summary>
-        /// <param name="name"> The name of the city. </param>
+        /// <param name="cityName"> The name of the city. </param>
         /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static string GetWithCityName(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
+        /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
+        /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
+        /// <exception cref="ArgumentException"></exception>
+        public CurrentWeather(string cityName, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
-            string file;
+            string file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units={measurement}&lang={language}");
+            dynamic json = JsonConvert.DeserializeObject<dynamic>(file);
 
-            if (format == "json")
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+            try
+            {
+                CityName = json.name;
+                CityId = json.id;
+                LocationLongitude = json.coord.lon;
+                LocationLatitude = json.coord.lat;
+                Title = json.weather[0].main;
+                Description = json.weather[0].description;
+                Temperature = json.main.temp;
+                AtmosphericPressure = json.main.pressure;
+                HumidityPercentage = json.main.humidity;
+                WindSpeed = json.wind.speed;
+                WindDirection = json.wind.deg;
+                CloudPercentage = json.clouds.all;
+            }
 
-            return file;
+            catch
+            {
+                throw new ArgumentException("The OpenWeatherMap API call was invalid, probably because of an invalid argument.");
+            }
         }
 
         /// <summary>
-        /// Gets the current weather in a given city asynchronously.
-        /// More information in https://openweathermap.org/current#name
+        /// The name of the city analyzed.
         /// </summary>
-        /// <param name="name"> The name of the city. </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetWithCityNameAsync(string name, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?q={name}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public string CityName { get; }
 
         /// <summary>
-        /// Gets the current weather in a given city.
-        /// More information in https://openweathermap.org/current#cityid
+        /// The OpenWeatherMap city id of the city analyzed.
+        /// More information in https://openweathermap.org/current#cityid.
         /// </summary>
-        /// <param name="id"> The city id. More information in http://bulk.openweathermap.org/sample/ </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static string GetWithCityId(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public long CityId { get; }
 
         /// <summary>
-        /// Gets the current weather in a given city asynchronously.
-        /// More information in https://openweathermap.org/current#cityid
+        /// The longitude of the location analyzed.
         /// </summary>
-        /// <param name="id"> The city id. More information in http://bulk.openweathermap.org/sample/ </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetWithCityIdAsync(long id, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?id={id}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public double LocationLongitude { get; }
 
         /// <summary>
-        /// Gets the current weather in a given location.
-        /// More information in https://openweathermap.org/current#geo
+        /// The latitude of the location analyzed.
         /// </summary>
-        /// <param name="latitude"> The latitude of the location. </param>
-        /// <param name="longitude"> The longitude of the location. </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static string GetWithGeoCoordinates(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public double LocationLatitude { get; }
 
         /// <summary>
-        /// Gets the current weather in a given location asynchronously.
-        /// More information in https://openweathermap.org/current#geo
+        /// An english word describing the current weather.
         /// </summary>
-        /// <param name="latitude"> The latitude of the location. </param>
-        /// <param name="longitude"> The longitude of the location. </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetWithGeoCoordinatesAsync(double latitude, double longitude, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public string Title { get; }
 
         /// <summary>
-        /// Gets the current weather in a given location.
-        /// More information in https://openweathermap.org/current#zip
+        /// A small description of the current weather in the specified language.
         /// </summary>
-        /// <param name="zipCode"> The ZIP code of the location. </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static string GetWithZIPCode(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
-
-            if (format == "json")
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
-
-            return file;
-        }
+        public string Description { get; }
 
         /// <summary>
-        /// Gets the current weather in a given location asynchronously.
-        /// More information in https://openweathermap.org/current#zip
+        /// The temperature in the described measurement system.
         /// </summary>
-        /// <param name="zipCode"> The ZIP code of the location. </param>
-        /// <param name="apiKey"> The api key of the user. </param>
-        /// <param name="format"> The format of the output. Can be: json, xml or html. </param>
-        /// <param name="measurement"> The type of measurement of the output. Can be: standard, metric or imperial. </param>
-        /// <param name="language"> The language of the output. Can be any of the given list: https://openweathermap.org/current#multi </param>
-        /// <returns> The output file as a string. </returns>
-        public static async Task<string> GetWithZIPCodeAsync(string zipCode, string apiKey, string format = "json", string measurement = "standard", string language = "en")
-        {
-            string file;
+        public double Temperature { get; }
 
-            if (format == "json")
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&units={measurement}&lang={language}");
-            else
-                file = await ReadWebpageAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={apiKey}&mode={format}&units={measurement}&lang={language}");
+        /// <summary>
+        /// The atmopheric pressure represented in hPa.
+        /// </summary>
+        public int AtmosphericPressure { get; }
 
-            return file;
-        }
+        /// <summary>
+        /// The humidity of the location (%).
+        /// </summary>
+        public int HumidityPercentage { get; }
+
+        /// <summary>
+        /// The speed of the wind. Depends on the system of measurement.
+        /// </summary>
+        public double WindSpeed { get; }
+
+        /// <summary>
+        /// The direction of the wind in meteorological degrees.
+        /// </summary>
+        public int WindDirection { get; }
+
+        /// <summary>
+        /// The cloudiness percentage of the location (%).
+        /// </summary>
+        public int CloudPercentage { get; }
 
         private static string ReadWebpage(string uri)
         {
             try
             {
+                var client = new HttpClient();
                 HttpResponseMessage response = client.GetAsync(uri).Result;
                 response.EnsureSuccessStatusCode();
+                client.Dispose();
                 return response.Content.ReadAsStringAsync().Result;
             }
 
@@ -212,15 +128,17 @@
         {
             try
             {
+                var client = new HttpClient();
                 HttpResponseMessage response = await client.GetAsync(uri);
                 response.EnsureSuccessStatusCode();
+                client.Dispose();
                 return await response.Content.ReadAsStringAsync();
             }
 
             catch (HttpRequestException e)
             {
                 Console.WriteLine("\nInternal Http Request Exception Caught!");
-                Console.WriteLine($"Message: e.Message");
+                Console.WriteLine($"Message: {e.Message}");
                 throw new HttpRequestException(e.Message);
             }
         }
