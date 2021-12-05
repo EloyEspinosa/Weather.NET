@@ -4,11 +4,21 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <Version>0.1.0</Version>
+    <PackageVersion>0.1.0</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
+    <Description>A simple library that uses OpenWeatherMap API to give the weather and supports asynchronous methods.</Description>
+    <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/EloyEspinosa/Weather.NET</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/EloyEspinosa/Weather.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>openweathermap, weather, .net6, library</PackageTags>
+    <PackageReleaseNotes>Created the package.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="images\logo.png" Pack="true" PackagePath="\"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
