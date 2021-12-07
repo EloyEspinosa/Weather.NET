@@ -1,12 +1,12 @@
-using Newtonsoft.Json;
+global using Newtonsoft.Json;
 
 namespace Weather.NET
 {
     /// <summary>
     /// Provides the current weather of a specific location.
-    /// OpenWeather docs: https://openweathermap.org/current
+    /// OpenWeatherMap docs: https://openweathermap.org/current
     /// </summary>
-    public class CurrentWeather
+    public static class CurrentWeather
     {
         /// <summary>
         /// Gets the current weather of a given city.
@@ -17,7 +17,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static Weather New(string cityName, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static WeatherResponse New(string cityName, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units={measurement}&lang={language}").Result;
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -32,7 +32,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static Weather New(long cityId, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static WeatherResponse New(long cityId, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={cityId}&appid={apiKey}&units={measurement}&lang={language}").Result;
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -48,7 +48,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static Weather New(double latitude, double longitude, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static WeatherResponse New(double latitude, double longitude, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}").Result;
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -64,12 +64,12 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static Weather New(long zipCode, string countryCode, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.Spanish)
+        public static WeatherResponse New(long zipCode, string countryCode, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.Spanish)
         {
             string file = ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={apiKey}&units={measurement}&lang={language}").Result;
             return New(JsonConvert.DeserializeObject<dynamic>(file));
         }
-        
+
         /// <summary>
         /// Gets the current weather of a given city asynchronously.
         /// More information in https://openweathermap.org/current#name
@@ -79,7 +79,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static async Task<Weather> NewAsync(string cityName, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static async Task<WeatherResponse> NewAsync(string cityName, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = await ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units={measurement}&lang={language}");
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -94,7 +94,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static async Task<Weather> NewAsync(long cityId, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static async Task<WeatherResponse> NewAsync(long cityId, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = await ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?id={cityId}&appid={apiKey}&units={measurement}&lang={language}");
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -110,7 +110,7 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static async Task<Weather> NewAsync(double latitude, double longitude, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static async Task<WeatherResponse> NewAsync(double latitude, double longitude, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = await ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={apiKey}&units={measurement}&lang={language}");
             return New(JsonConvert.DeserializeObject<dynamic>(file));
@@ -126,17 +126,17 @@ namespace Weather.NET
         /// <param name="measurement"> The measurement system used in the output, can be any of the constants in WeatherMeasurement. </param>
         /// <param name="language"> The language of the output, can be any of the constants in WeatherLanguage. </param>
         /// <returns> The current weather. </returns>
-        public static async Task<Weather> NewAsync(long zipCode, string countryCode, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
+        public static async Task<WeatherResponse> NewAsync(long zipCode, string countryCode, string apiKey, string measurement = WeatherMeasurement.Standard, string language = WeatherLanguage.English)
         {
             string file = await ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={apiKey}&units={measurement}&lang={language}");
             return New(JsonConvert.DeserializeObject<dynamic>(file));
         }
     
-        private static Weather New(dynamic json)
+        private static WeatherResponse New(dynamic json)
         {
             try
             {
-                return new Weather
+                return new WeatherResponse
                 {
                     CityName = json.name,
                     CityId = json.id,

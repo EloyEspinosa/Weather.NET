@@ -3,7 +3,7 @@ namespace Weather.NET
     /// <summary>
     /// Provides a generic OpenWeatherMap weather response.
     /// </summary>
-    public struct Weather
+    public struct WeatherResponse
     {
         /// <summary>
         /// The name of the city analyzed.
