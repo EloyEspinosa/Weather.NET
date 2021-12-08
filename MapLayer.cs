@@ -13,7 +13,7 @@ namespace Weather.NET
         /// <summary>
         /// Gets a layer map of the rain volume (mm) of the area.
         /// </summary>
-        public const string Precipitation = "precipitation_new";
+        public const string Rain = "precipitation_new";
 
         /// <summary>
         /// Gets a layer map of the sea level pressure (Pa) of the area.
@@ -29,5 +29,10 @@ namespace Weather.NET
         /// Gets a layer map of temperature (Celsius) of the area.
         /// </summary>
         public const string Temperature = "temp_new";
+
+        /// <summary>
+        /// Gets a layer map of snow volume (mm) of the area.
+        /// </summary>
+        public const string Snow = "snow_new";
     }
 }
