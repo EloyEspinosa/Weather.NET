@@ -7,3 +7,9 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Repository](https://github.com/EloyEspinosa/Weather.NET)
 - [Official Page](https://eloyespinosa.github.io/Weather.NET/)
 - [Documentation](https://eloyespinosa.github.io/Weather.NET/docs)
+
+## Version 0.3.0
+- Now it is possible to get OpenWeatherMap weather maps with the WeatherMap class.
+- The MapLayer class contains constants that can be used for the weather maps.
+- CurrentWeather and FutureWeather have been slightly optimized.
+- The Readme now contains useful links and release notes.
