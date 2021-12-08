@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.2.0</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
     <Description>A simple library that uses OpenWeatherMap API to give the weather and supports asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
@@ -14,7 +14,10 @@
     <RepositoryUrl>https://github.com/EloyEspinosa/Weather.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
-    <PackageReleaseNotes>Created the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>
+    - Getting weather forecasts is now supported with the FutureWeather class.
+    - Now weather responses are returned with the WeatherResponse struct.
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
