@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="images\logo.png" Pack="true" PackagePath="\"/>
+    <None Include="..\images\logo.png" Pack="true" PackagePath="\"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
