@@ -15,7 +15,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - Now the library actually handles exceptions correctly with Weather.NET.Exceptions.
+    - The package is now no longer in alpha and beta, and now the versions from here will be long-time support.
+- Now the library actually handles exceptions correctly with Weather.NET.Exceptions.
 - The files have been reordered:
     - WeatherResponse is now Models.WeatherResponse.
     - WeatherLanguage is now Enums.Language and it is now a enum instead of a class with constants.
