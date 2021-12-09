@@ -16,9 +16,9 @@
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
     - Now it is possible to get OpenWeatherMap weather maps with the WeatherMap class.
-    - The MapLayer class contains constants that can be used for the weather maps.
-    - CurrentWeather and FutureWeather have been slightly optimized.
-    - The Readme now contains useful links and release notes.
+- The MapLayer class contains constants that can be used for the weather maps.
+- CurrentWeather and FutureWeather have been slightly optimized.
+- The Readme now contains useful links and release notes.
     </PackageReleaseNotes>
   </PropertyGroup>
 
