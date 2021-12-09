@@ -1,6 +1,7 @@
 global using Newtonsoft.Json;
 global using Weather.NET.Enums;
 global using Weather.NET.Extensions;
+global using System.Net;
 
 namespace Weather.NET
 {
@@ -152,19 +153,26 @@ namespace Weather.NET
         private static readonly HttpClient client = new HttpClient();
         internal static async Task<string> ReadWebpage(string uri)
         {
-            try
+            HttpResponseMessage response = await client.GetAsync(uri);
+            try { response.EnsureSuccessStatusCode(); }
+            catch (HttpRequestException) 
             {
-                HttpResponseMessage response = await client.GetAsync(uri);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.Unauthorized:
+                        throw new ArgumentException("The given api key was invalid.");
+                    
+                    case HttpStatusCode.NotFound:
+                        throw new ArgumentException("The location was not available.");
+                    
+                    case HttpStatusCode.TooManyRequests:
+                        throw new HttpRequestException("The limit of 60 calls per minute was surpassed.");
+                    
+                    default:
+                        throw new HttpRequestException("An internal error in OpenWeatherMap ocurred. It is recommended to contact OpenWeatherMap API in https://home.openweathermap.org/questions.");
+                }
             }
-
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine("\nInternal Http Request Exception Caught!");
-                Console.WriteLine($"Message: {e.Message}");
-                throw new HttpRequestException(e.Message);
-            }
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

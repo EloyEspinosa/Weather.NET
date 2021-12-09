@@ -44,6 +44,27 @@ namespace Weather.NET
         /// <param name="apiKey"> The api key of the user. </param>
         public static async Task DownloadMapAsync(string fileName, MapLayer layer, int zoom, double xCoord, double yCoord, string apiKey)
         {
+            HttpResponseMessage statusCheck = await client.GetAsync(GetMapUrl(layer, zoom, xCoord, yCoord, apiKey));
+            try { statusCheck.EnsureSuccessStatusCode(); }
+            catch 
+            {
+                switch (statusCheck.StatusCode)
+                {
+                    case HttpStatusCode.BadRequest:
+                        string message = (JsonConvert.DeserializeObject<dynamic>(await statusCheck.Content.ReadAsStringAsync())).message;
+                        throw new ArgumentException(message);
+                    
+                    case HttpStatusCode.Unauthorized:
+                        throw new ArgumentException("The given api key was invalid.");
+                    
+                    case HttpStatusCode.TooManyRequests:
+                        throw new HttpRequestException("The limit of 60 calls per minute was surpassed.");
+                    
+                    default:
+                        throw new HttpRequestException("An internal error in OpenWeatherMap ocurred. It is recommended to contact OpenWeatherMap API in https://home.openweathermap.org/questions.");
+                }
+            }
+
             Stream stream = await client.GetStreamAsync(GetMapUrl(layer, zoom, xCoord, yCoord, apiKey));
             using (var fileStream = new FileStream(fileName, FileMode.CreateNew))
             {
