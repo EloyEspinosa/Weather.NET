@@ -1,4 +1,4 @@
-namespace Weather.NET
+namespace Weather.NET.Models
 {
     /// <summary>
     /// Provides a generic OpenWeatherMap weather response.

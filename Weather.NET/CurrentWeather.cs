@@ -1,7 +1,8 @@
+global using System.Net;
 global using Newtonsoft.Json;
 global using Weather.NET.Enums;
+global using Weather.NET.Models;
 global using Weather.NET.Extensions;
-global using System.Net;
 
 namespace Weather.NET
 {
