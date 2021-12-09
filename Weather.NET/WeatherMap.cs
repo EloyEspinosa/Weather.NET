@@ -52,13 +52,13 @@ namespace Weather.NET
                 {
                     case HttpStatusCode.BadRequest:
                         string message = (JsonConvert.DeserializeObject<dynamic>(await statusCheck.Content.ReadAsStringAsync())).message;
-                        throw new ArgumentException(message);
+                        throw new HttpBadRequestException(message);
                     
                     case HttpStatusCode.Unauthorized:
-                        throw new ArgumentException("The given api key was invalid.");
+                        throw new HttpUnauthorizedException("The given api key was invalid.");
                     
                     case HttpStatusCode.TooManyRequests:
-                        throw new HttpRequestException("The limit of 60 calls per minute was surpassed.");
+                        throw new HttpTooManyRequestsException("The limit of 60 calls per minute was surpassed.");
                     
                     default:
                         throw new HttpRequestException("An internal error in OpenWeatherMap ocurred. It is recommended to contact OpenWeatherMap API in https://home.openweathermap.org/questions.");

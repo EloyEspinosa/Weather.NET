@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>0.3.0</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
     <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
@@ -15,10 +15,12 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - Now it is possible to get OpenWeatherMap weather maps with the WeatherMap class.
-- The MapLayer class contains constants that can be used for the weather maps.
-- CurrentWeather and FutureWeather have been slightly optimized.
-- The Readme now contains useful links and release notes.
+    - Now the library actually handles exceptions correctly with Weather.NET.Exceptions.
+- The files have been reordered:
+    - WeatherResponse is now Models.WeatherResponse.
+    - WeatherLanguage is now Enums.Language and it is now a enum instead of a class with constants.
+    - WeatherMeasurement is now Enums.Measurement and it is now a enum instead of a class with constants.
+    - MapLayer is now Enums.MapLayer and it is now a enum instead of class with constants.
     </PackageReleaseNotes>
   </PropertyGroup>
 

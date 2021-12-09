@@ -2,6 +2,7 @@ global using System.Net;
 global using Newtonsoft.Json;
 global using Weather.NET.Enums;
 global using Weather.NET.Models;
+global using Weather.NET.Exceptions;
 global using Weather.NET.Extensions;
 
 namespace Weather.NET
@@ -123,32 +124,24 @@ namespace Weather.NET
             string file = await ReadWebpage($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={apiKey}&units={measurement.Convert()}&lang={language.Convert()}");
             return New(JsonConvert.DeserializeObject<dynamic>(file));
         }
-    
+
         private static WeatherResponse New(dynamic json)
         {
-            try
+            return new WeatherResponse
             {
-                return new WeatherResponse
-                {
-                    CityName = json.name,
-                    CityId = json.id,
-                    LocationLongitude = json.coord.lon,
-                    LocationLatitude = json.coord.lat,
-                    Title = json.weather[0].main,
-                    Description = json.weather[0].description,
-                    Temperature = json.main.temp,
-                    AtmosphericPressure = json.main.pressure,
-                    HumidityPercentage = json.main.humidity,
-                    WindSpeed = json.wind.speed,
-                    WindDirection = json.wind.deg,
-                    CloudPercentage = json.clouds.all
-                };
-            }
-
-            catch
-            {
-                throw new ArgumentException("The OpenWeatherMap API call was invalid, probably because of an invalid argument.");
-            }
+                CityName = json.name,
+                CityId = json.id,
+                LocationLongitude = json.coord.lon,
+                LocationLatitude = json.coord.lat,
+                Title = json.weather[0].main,
+                Description = json.weather[0].description,
+                Temperature = json.main.temp,
+                AtmosphericPressure = json.main.pressure,
+                HumidityPercentage = json.main.humidity,
+                WindSpeed = json.wind.speed,
+                WindDirection = json.wind.deg,
+                CloudPercentage = json.clouds.all
+            };
         }
 
         private static readonly HttpClient client = new HttpClient();
@@ -156,19 +149,19 @@ namespace Weather.NET
         {
             HttpResponseMessage response = await client.GetAsync(uri);
             try { response.EnsureSuccessStatusCode(); }
-            catch (HttpRequestException) 
+            catch (HttpRequestException)
             {
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.Unauthorized:
-                        throw new ArgumentException("The given api key was invalid.");
-                    
+                        throw new HttpUnauthorizedException("The given api key was invalid.");
+
                     case HttpStatusCode.NotFound:
-                        throw new ArgumentException("The location was not available.");
-                    
+                        throw new HttpNotFoundException("The location was not available.");
+
                     case HttpStatusCode.TooManyRequests:
-                        throw new HttpRequestException("The limit of 60 calls per minute was surpassed.");
-                    
+                        throw new HttpTooManyRequestsException("The limit of 60 calls per minute was surpassed.");
+
                     default:
                         throw new HttpRequestException("An internal error in OpenWeatherMap ocurred. It is recommended to contact OpenWeatherMap API in https://home.openweathermap.org/questions.");
                 }
