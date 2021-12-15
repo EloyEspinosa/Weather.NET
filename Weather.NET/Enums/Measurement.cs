@@ -1,23 +1,22 @@
-namespace Weather.NET.Enums
+namespace Weather.NET.Enums;
+
+/// <summary>
+/// Contains all available systems of measurement that can be used in the output.
+/// </summary>
+public enum Measurement
 {
     /// <summary>
-    /// Contains all available systems of measurement that can be used in the output.
+    /// Kelvin for temperature, meters for distances.
     /// </summary>
-    public enum Measurement
-    {
-        /// <summary>
-        /// Kelvin for temperature, meters for distances.
-        /// </summary>
-        Standard,
+    Standard,
 
-        /// <summary>
-        /// Celsius for temperature, meters for distances.
-        /// </summary>
-        Metric,
+    /// <summary>
+    /// Celsius for temperature, meters for distances.
+    /// </summary>
+    Metric,
 
-        /// <summary>
-        /// Fahrenheit for temperature, miles for distances.
-        /// </summary>
-        Imperial
-    }
+    /// <summary>
+    /// Fahrenheit for temperature, miles for distances.
+    /// </summary>
+    Imperial
 }
