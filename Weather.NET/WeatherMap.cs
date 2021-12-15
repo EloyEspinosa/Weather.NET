@@ -66,9 +66,18 @@ public static class WeatherMap
         }
 
         Stream stream = await client.GetStreamAsync(GetMapUrl(layer, zoom, xCoord, yCoord, apiKey));
-        using (var fileStream = new FileStream(fileName, FileMode.CreateNew))
+        try
         {
-            await stream.CopyToAsync(fileStream);
+            using (var fileStream = new FileStream(fileName, FileMode.CreateNew))
+            {
+                await stream.CopyToAsync(fileStream);
+            }
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error ocurred while trying to download the weather map.");
+            Console.WriteLine($"Exception: {ex.Message}");
         }
     }
 

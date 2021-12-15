@@ -136,13 +136,31 @@ public static class FutureWeather
         {
             output.Add(new WeatherModel
             {
-                Location = json.city.coord,
-                Weather = item.weather,
-                Main = item.main,
+                Location = new Location { Longitude = json.city.coord.lon, Latitude = json.city.coord.lat },
+
+                Weather = new List<Models.WeatherModel.Weather> {
+                new Models.WeatherModel.Weather {
+                    Id = item.weather[0].id,
+                    Title = item.weather[0].main,
+                    Description = item.weather[0].description,
+                    IconId = item.weather[0].icon,
+                }},
+
+                Main = new Main
+                {
+                    Temperature = item.main.temp,
+                    TemperaturePerception = item.main.feels_like,
+                    TemperatureMin = item.main.temp_min,
+                    TemperatureMax = item.main.temp_max,
+                    AtmosphericPressure = item.main.pressure,
+                    HumidityPercentage = item.main.humidity
+                },
+
                 Visibility = item.visibility,
-                Wind = item.wind,
-                Clouds = item.clouds,
+                Wind = new Wind { Speed = item.wind.speed, Direction = item.wind.deg },
+                Clouds = new Clouds { Percentage = item.clouds.all },
                 AnalysisDate = item.dt,
+
                 Internal = new Internal
                 {
                     Message = json.message,
@@ -150,6 +168,7 @@ public static class FutureWeather
                     SunriseUnix = json.city.sunrise,
                     SunsetUnix = json.city.sunset
                 },
+                
                 Timezone = json.city.timezone,
                 CityId = json.city.id,
                 CityName = json.city.name,
