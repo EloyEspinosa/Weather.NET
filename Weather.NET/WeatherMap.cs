@@ -7,65 +7,42 @@ namespace Weather.NET;
 public static class WeatherMap
 {
     /// <summary>
-    /// Gets the url of a weather map.
-    /// More information in https://openweathermap.org/api/weathermaps#urlformat
+    /// Gets the url of an OpenWeatherMap Weather Layer Map (1.0).
     /// </summary>
-    /// <param name="layer"> The type of map layer. </param>
-    /// <param name="zoom"> The zoom level of the map. </param>
-    /// <param name="xCoord"> The x tile coordinate of the map. </param>
-    /// <param name="yCoord"> The y tile coordinate of the map. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
+    /// <param name="client"> The client, that contains the API key. </param>
+    /// <param name="layer"> The type of map. </param>
+    /// <param name="zoom"> The level of zoom of the map. </param>
+    /// <param name="xCoord"> The x coordinate of the map. </param>
+    /// <param name="yCoord"> The y coordinate of the map. </param>
     /// <returns> The url of the map. </returns>
-    public static string GetMapUrl(MapLayer layer, int zoom, double xCoord, double yCoord, string apiKey) =>
-        $"https://tile.openweathermap.org/map/{layer.Convert()}/{zoom}/{xCoord}/{yCoord}.png?appid={apiKey}";
+    public static string GetWeatherMapUrl(this WeatherClient client, MapLayer layer, int zoom, double xCoord, double yCoord) =>
+        $"https://tile.openweathermap.org/map/{layer.Convert()}/{zoom}/{xCoord}/{yCoord}.png?appid={client.ApiKey}";
 
     /// <summary>
-    /// Downloads a weather map in a given file path.
-    /// More information in https://openweathermap.org/api/weathermaps#urlformat
+    /// Downloads an OpenWeatherMap Weather Layer Map (1.0).
     /// </summary>
-    /// <param name="fileName"> The path of the new file. </param>
-    /// <param name="layer"> The type of map layer. </param>
-    /// <param name="zoom"> The zoom level of the map. </param>
+    /// <param name="client"> The client, that contains the API key. </param>
+    /// <param name="fileName"> The file path where the map will be downloaded. </param>
+    /// <param name="layer"> The type of map. </param>
+    /// <param name="zoom"> The level of zoom of the map. </param>
     /// <param name="xCoord"> The x coordinate of the map. </param>
     /// <param name="yCoord"> The y coordinate of the map. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
-    public static void DownloadMap(string fileName, MapLayer layer, int zoom, double xCoord, double yCoord, string apiKey) =>
-        DownloadMapAsync(fileName, layer, zoom, xCoord, yCoord, apiKey).Wait();
+    public static void DownloadWeatherMap(this WeatherClient client, string fileName, MapLayer layer, int zoom, double xCoord, double yCoord) =>
+        client.DownloadWeatherMapAsync(fileName, layer, zoom, xCoord, yCoord).Wait();
 
     /// <summary>
-    /// Downloads a weather map in a given file path asynchronously.
-    /// More information in https://openweathermap.org/api/weathermaps#urlformat
+    /// Downloads an OpenWeatherMap Weather Layer Map (1.0) asynchronously.
     /// </summary>
-    /// <param name="fileName"> The path of the new file. </param>
-    /// <param name="layer"> The type of map layer. </param>
-    /// <param name="zoom"> The zoom level of the map. </param>
+    /// <param name="client"> The client, that contains the API key. </param>
+    /// <param name="fileName"> The file path where the map will be downloaded. </param>
+    /// <param name="layer"> The type of map. </param>
+    /// <param name="zoom"> The level of zoom of the map. </param>
     /// <param name="xCoord"> The x coordinate of the map. </param>
     /// <param name="yCoord"> The y coordinate of the map. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
-    public static async Task DownloadMapAsync(string fileName, MapLayer layer, int zoom, double xCoord, double yCoord, string apiKey)
+    /// <returns> A task of the download. </returns>
+    public static async Task DownloadWeatherMapAsync(this WeatherClient client, string fileName, MapLayer layer, int zoom, double xCoord, double yCoord)
     {
-        HttpResponseMessage statusCheck = await client.GetAsync(GetMapUrl(layer, zoom, xCoord, yCoord, apiKey));
-        try { statusCheck.EnsureSuccessStatusCode(); }
-        catch
-        {
-            switch (statusCheck.StatusCode)
-            {
-                case HttpStatusCode.BadRequest:
-                    string message = (JsonConvert.DeserializeObject<dynamic>(await statusCheck.Content.ReadAsStringAsync())).message;
-                    throw new HttpBadRequestException(message);
-
-                case HttpStatusCode.Unauthorized:
-                    throw new HttpUnauthorizedException("The given api key was invalid.");
-
-                case HttpStatusCode.TooManyRequests:
-                    throw new HttpTooManyRequestsException("The limit of 60 calls per minute was surpassed.");
-
-                default:
-                    throw new HttpRequestException("An internal error in OpenWeatherMap ocurred. It is recommended to contact OpenWeatherMap API in https://home.openweathermap.org/questions.");
-            }
-        }
-
-        Stream stream = await client.GetStreamAsync(GetMapUrl(layer, zoom, xCoord, yCoord, apiKey));
+        Stream stream = await (await WeatherClient.GetWebpageAsync(client.GetWeatherMapUrl(layer, zoom, xCoord, yCoord))).Content.ReadAsStreamAsync();
         try
         {
             using (var fileStream = new FileStream(fileName, FileMode.CreateNew))
@@ -80,6 +57,4 @@ public static class WeatherMap
             Console.WriteLine($"Exception: {ex.Message}");
         }
     }
-
-    private static readonly HttpClient client = new HttpClient();
 }
