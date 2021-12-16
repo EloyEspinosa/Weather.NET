@@ -27,6 +27,9 @@ Console.WriteLine(forecasts[7].Weather.Description);
 WeatherModel currentWeather = client.GetCurrentWeather(10001, "US", measurement: Measurement.Imperial);
 Console.WriteLine(currentWeather.Main.Temperature);
 
+// Gets maps of the entire world.
+client.DownloadWeatherMap("temperatureMap.png", MapLayer.Temperature, 0, 0, 0);
+await client.DownloadWeatherMapAsync("pressureMap.png", MapLayer.Pressure, 0, 0, 0);
 ...
 ```
 
