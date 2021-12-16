@@ -6,7 +6,9 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Nuget Package](https://www.nuget.org/packages/Weather.NET)
 - [Repository](https://github.com/EloyEspinosa/Weather.NET)
 - [Official Page](https://eloyespinosa.github.io/Weather.NET/)
-- [Documentation](https://eloyespinosa.github.io/Weather.NET/docs)
+- [Documentation](https://eloyespinosa.github.io/Weather.NET/docs/)
+- [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
+- [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
 ## Example
 ```c#
@@ -21,7 +23,7 @@ WeatherClient client = new WeatherClient("Your API key");
 
 // Gets a forecast of the London weather asynchronously, using the city name.
 List<WeatherModel> forecasts = await client.GetForecastAsync("London", 8, Measurement.Metric, Language.Spanish);
-Console.WriteLine(forecasts[7].Weather.Description);
+Console.WriteLine(forecasts[7].Weather[0].Description);
 
 // Gets the current temperature of New York synchronously, using the ZIP Code.
 WeatherModel currentWeather = client.GetCurrentWeather(10001, "US", measurement: Measurement.Imperial);
