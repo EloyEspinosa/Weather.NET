@@ -9,7 +9,7 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Documentation](https://eloyespinosa.github.io/Weather.NET/docs)
 
 ## Example
-```
+```c#
 using System;
 using Weather.NET;
 using Weather.NET.Enums;
