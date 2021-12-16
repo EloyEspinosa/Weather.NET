@@ -42,7 +42,8 @@ public static class WeatherMap
     /// <returns> A task of the download. </returns>
     public static async Task DownloadWeatherMapAsync(this WeatherClient client, string fileName, MapLayer layer, int zoom, double xCoord, double yCoord)
     {
-        Stream stream = await (await WeatherClient.GetWebpageAsync(client.GetWeatherMapUrl(layer, zoom, xCoord, yCoord))).Content.ReadAsStreamAsync();
+        // Copy the Webpage a stream of characters to a new file.
+        Stream stream = await WeatherClient.GetWebpageStreamAsync(client.GetWeatherMapUrl(layer, zoom, xCoord, yCoord));
         try
         {
             using (var fileStream = new FileStream(fileName, FileMode.CreateNew))

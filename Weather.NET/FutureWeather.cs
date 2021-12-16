@@ -5,132 +5,135 @@ namespace Weather.NET;
 /// OpenWeatherMap docs: https://openweathermap.org/forecast5
 /// </summary>
 public static class FutureWeather
-{
+{    
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
     /// More information in https://openweathermap.org/forecast5#name5
     /// </summary>
+    /// <param name="client"> The Weather client of the user. </param>
     /// <param name="cityName"> The name of the city. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static List<WeatherModel> New(string cityName, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        NewAsync(cityName, apiKey, timestampCount, measurement, language).Result;
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static List<WeatherModel> GetForecast(this WeatherClient client, string cityName, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
+        client.GetForecastAsync(cityName, timestampCount, measurement, language).Result;
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
     /// More information in https://openweathermap.org/forecast5#cityid5
     /// </summary>
-    /// <param name="cityId"> The OpenWeather city ID. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
+    /// <param name="client"> The Weather client of the user. </param>
+    /// <param name="cityId"> The OpenWeatherMap City ID. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
-    /// <param name="measurement"> The measuremnt system used in the output. </param>
+    /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static List<WeatherModel> New(long cityId, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        NewAsync(cityId, apiKey, timestampCount, measurement, language).Result;
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static List<WeatherModel> GetForecast(this WeatherClient client, long cityId, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
+        client.GetForecastAsync(cityId, timestampCount, measurement, language).Result;
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
     /// More information in https://openweathermap.org/forecast5#geo5
     /// </summary>
+    /// <param name="client"> The Weather client of the user. </param>
     /// <param name="latitude"> The latitude of the location. </param>
     /// <param name="longitude"> The longitude of the location. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static List<WeatherModel> New(double latitude, double longitude, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        NewAsync(latitude, longitude, apiKey, timestampCount, measurement, language).Result;
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static List<WeatherModel> GetForecast(this WeatherClient client, double latitude, double longitude, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
+        client.GetForecastAsync(latitude, longitude, timestampCount, measurement, language).Result;
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location.
-    /// More information in https://openweathermap.org/forecast5#zip5
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
+    /// More information in https://openweathermap.org/forecast5#zip
     /// </summary>
-    /// <param name="zipCode"> The ZIP code of the location. </param>
-    /// <param name="countryCode"> The country code of the location. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
+    /// <param name="client"> The Weather client of the user. </param>
+    /// <param name="zipCode"> The ZIP Code of the location. </param>
+    /// <param name="countryCode"> The ISO 3166 country code of the location. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static List<WeatherModel> New(long zipCode, string countryCode, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static List<WeatherModel> GetForecast(this WeatherClient client, long zipCode, string countryCode, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = CurrentWeather.ReadWebpage($"https://api.openweathermap.org/data/2.5/forecast?zip={zipCode},{countryCode}&appid={apiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}").Result;
+        string file = WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/forecast?zip={zipCode},{countryCode}&appid={client.ApiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}").Result;
         return New(JsonConvert.DeserializeObject<dynamic>(file));
     }
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location asynchronously.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval asynchronously.
     /// More information in https://openweathermap.org/forecast5#name5
     /// </summary>
+    /// <param name="client"> The Weather client of the user. </param>
     /// <param name="cityName"> The name of the city. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static async Task<List<WeatherModel>> NewAsync(string cityName, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static async Task<List<WeatherModel>> GetForecastAsync(this WeatherClient client, string cityName, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await CurrentWeather.ReadWebpage($"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={client.ApiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
         return New(JsonConvert.DeserializeObject<dynamic>(file));
     }
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location asynchronously.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval asynchronously.
     /// More information in https://openweathermap.org/forecast5#cityid5
     /// </summary>
-    /// <param name="cityId"> The OpenWeather city ID. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
+    /// <param name="client"> The Weather client of the user. </param>
+    /// <param name="cityId"> The OpenWeatherMap City ID. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
-    /// <param name="measurement"> The measuremnt system used in the output. </param>
+    /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static async Task<List<WeatherModel>> NewAsync(long cityId, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static async Task<List<WeatherModel>> GetForecastAsync(this WeatherClient client, long cityId, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await CurrentWeather.ReadWebpage($"https://api.openweathermap.org/data/2.5/forecast?id={cityId}&appid={apiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/forecast?id={cityId}&appid={client.ApiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
         return New(JsonConvert.DeserializeObject<dynamic>(file));
     }
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location asynchronously.
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval asynchronously.
     /// More information in https://openweathermap.org/forecast5#geo5
     /// </summary>
+    /// <param name="client"> The Weather client of the user. </param>
     /// <param name="latitude"> The latitude of the location. </param>
     /// <param name="longitude"> The longitude of the location. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static async Task<List<WeatherModel>> NewAsync(double latitude, double longitude, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static async Task<List<WeatherModel>> GetForecastAsync(this WeatherClient client, double latitude, double longitude, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await CurrentWeather.ReadWebpage($"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={apiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={client.ApiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
         return New(JsonConvert.DeserializeObject<dynamic>(file));
     }
 
     /// <summary>
-    /// Gets a 5 day / 3 hour weather forecast of a specific location asynchronously.
-    /// More information in https://openweathermap.org/forecast5#zip5
+    /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval asynchronously.
+    /// More information in https://openweathermap.org/forecast5#zip
     /// </summary>
-    /// <param name="zipCode"> The ZIP code of the location. </param>
-    /// <param name="countryCode"> The country code of the location. </param>
-    /// <param name="apiKey"> The api key of the user. </param>
+    /// <param name="client"> The Weather client of the user. </param>
+    /// <param name="zipCode"> The ZIP Code of the location. </param>
+    /// <param name="countryCode"> The ISO 3166 country code of the location. </param>
     /// <param name="timestampCount"> The number of forecasts in the output. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
-    /// <returns> A list of weather responses, with their exact moment. </returns>
-    public static async Task<List<WeatherModel>> NewAsync(long zipCode, string countryCode, string apiKey, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    /// <returns> A list of weather forecasts, with their exact moment. </returns>
+    public static async Task<List<WeatherModel>> GetForecastAsync(this WeatherClient client, long zipCode, string countryCode, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await CurrentWeather.ReadWebpage($"https://api.openweathermap.org/data/2.5/forecast?zip={zipCode},{countryCode}&appid={apiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/forecast?zip={zipCode},{countryCode}&appid={client.ApiKey}&cnt={timestampCount}&units={measurement.Convert()}&lang={language.Convert()}");
         return New(JsonConvert.DeserializeObject<dynamic>(file));
     }
 
     private static List<WeatherModel> New(dynamic json)
     {
+        // Because of the nature of the forecast JSON response,
+        // the WeatherModel needs to be initialized in this way.
+        
         var output = new List<WeatherModel>();
         foreach (var item in json.list)
         {

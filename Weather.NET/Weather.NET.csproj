@@ -4,9 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
-    <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports asynchronous methods.</Description>
+    <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports both synchronous and asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://eloyespinosa.github.io/Weather.NET/</PackageProjectUrl>
@@ -15,13 +15,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - The package is now no longer in alpha and beta, and now the versions from here will be long-time support.
-- Now the library actually handles exceptions correctly with Weather.NET.Exceptions.
-- The files have been reordered:
-    - WeatherResponse is now Models.WeatherResponse.
-    - WeatherLanguage is now Enums.Language and it is now a enum instead of a class with constants.
-    - WeatherMeasurement is now Enums.Measurement and it is now a enum instead of a class with constants.
-    - MapLayer is now Enums.MapLayer and it is now a enum instead of class with constants.
+    - Now the library's code is cleaner and easier to use with the WeatherClient class.
+- Models.WeatherResponse is now called Models.WeatherModel.WeatherModel and it's now serializable.
+- Both the README and the official website contain examples and tutorials on how to use the library.
     </PackageReleaseNotes>
   </PropertyGroup>
 

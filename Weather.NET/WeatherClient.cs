@@ -1,3 +1,10 @@
+global using System.Net;
+global using Newtonsoft.Json;
+global using Weather.NET.Enums;
+global using Weather.NET.Exceptions;
+global using Weather.NET.Extensions;
+global using Weather.NET.Models.WeatherModel;
+
 namespace Weather.NET;
 
 /// <summary>
@@ -11,30 +18,18 @@ public class WeatherClient
     public string ApiKey { get; set; }
 
     /// <summary>
-    /// The default system of measurement.
-    /// </summary>
-    public Measurement Measurement { get; set; }
-
-    /// <summary>
-    /// The default language.
-    /// </summary>
-    public Language Language { get; set; }
-
-    /// <summary>
     /// Creates a new WeatherClient.
     /// </summary>
     /// <param name="apiKey"> The api key of the user. </param>
     /// <param name="defaultMeasurement"> The default measurement system of the user. </param>
     /// <param name="defaultLanguage"> The default language of the user. </param>
-    public WeatherClient(string apiKey, Measurement defaultMeasurement = Measurement.Standard, Language defaultLanguage = Language.English)
+    public WeatherClient(string apiKey)
     {
         ApiKey = apiKey;
-        Measurement = defaultMeasurement;
-        Language = defaultLanguage;
     }
 
     /// <summary>
-    /// Gets a webpage and returns the response, handling error codes.
+    /// Gets a webpage and returns the response asynchronously, handling error codes.
     /// </summary>
     /// <param name="url"> The url of the webpage. </param>
     /// <returns> An HttpResponseMessage without an error as a status code. </returns>
@@ -71,6 +66,43 @@ public class WeatherClient
 
         return response;
     }
+
+    /// <summary>
+    /// Gets a webpage and returns the response, handling error codes.
+    /// </summary>
+    /// <param name="url"> The url of the webpage. </param>
+    /// <returns> An HttpResponseMessage without an error as a status code. </returns>
+    public static HttpResponseMessage GetWebpage(string url) => GetWebpageAsync(url).Result;
+
+    /// <summary>
+    /// Gets a webpage and returns it as a string asynchronously, handling error codes.
+    /// </summary>
+    /// <param name="url"> The url of the webpage. </param>
+    /// <returns> The webpage as a string. </returns>
+    public static async Task<string> GetWebpageStringAsync(string url) =>
+        await (await GetWebpageAsync(url)).Content.ReadAsStringAsync();
+
+    /// <summary>
+    /// Gets a webpage and returns it as a string, handling error codes.
+    /// </summary>
+    /// <param name="url"> The url of the webpage. </param>
+    /// <returns> The webpage as a string. </returns>
+    public static string GetWebpageString(string url) => GetWebpageStringAsync(url).Result;
+
+    /// <summary>
+    /// Gets a webpage and returns it as a stream of characters asynchronously, handling error codes.
+    /// </summary>
+    /// <param name="url"> The url of the webpage. </param>
+    /// <returns> The webpage as a stream of characters. </returns>
+    public static async Task<Stream> GetWebpageStreamAsync(string url) =>
+        await (await GetWebpageAsync(url)).Content.ReadAsStreamAsync();
+
+    /// <summary>
+    /// Gets a webpage and returns it as a stream of characters, handling error codes.
+    /// </summary>
+    /// <param name="url"> The url of the webpage. </param>
+    /// <returns> The webpage as a stream of characters. </returns>
+    public static Stream GetWebpageStream(string url) => GetWebpageStreamAsync(url).Result;
 
     private static readonly HttpClient client = new HttpClient();
 }
