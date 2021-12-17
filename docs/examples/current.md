@@ -36,7 +36,7 @@ public static class CurrentWeatherExample
     public static void ImperialExample
     {
         // This is another way of using the GetCurrentWeather method.
-        WeatherModel currentWeather = CurrentWeathe.GetCurrentWeather(Client, 10001, "US", measurement: Measurement.Imperial);
+        WeatherModel currentWeather = CurrentWeathe.GetCurrentWeather(Client, "10001", "US", measurement: Measurement.Imperial);
         
         Console.WriteLine(currentWeather.Weather[0].Title);
         Console.WriteLine(currentWeather.Weather[0].Description);

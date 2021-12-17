@@ -21,10 +21,9 @@ public class WeatherClient
     /// Creates a new WeatherClient.
     /// </summary>
     /// <param name="apiKey"> The api key of the user. </param>
-    /// <param name="defaultMeasurement"> The default measurement system of the user. </param>
-    /// <param name="defaultLanguage"> The default language of the user. </param>
     public WeatherClient(string apiKey)
     {
+        new WeatherClient("");
         ApiKey = apiKey;
     }
 

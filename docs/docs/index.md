@@ -5,7 +5,7 @@ Documentation for all of the library's classes.
 - [FutureWeather](https://eloyespinosa.github.io/Weather.NET/docs/forecast)
 - [WeatherMap](https://eloyespinosa.github.io/Weather.NET/docs/maps)
 - [Models](https://eloyespinosa.github.io/Weather.NET/docs/models)
-  - [WeatherResponse](https://eloyespinosa.github.io/Weather.NET/docs/models/response)
+  - [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models/weather)
 - [Enums](https://eloyespinosa.github.io/Weather.NET/docs/enums)
   - [Language](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages)
   - [Measurement](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements)
