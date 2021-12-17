@@ -24,7 +24,7 @@ List<WeatherModel> forecasts = await client.GetForecastAsync("London", 8, Measur
 Console.WriteLine(forecasts[7].Weather.Description);
 
 // Gets the current temperature of New York synchronously, using the ZIP Code.
-WeatherModel currentWeather = client.GetCurrentWeather(10001, "US", measurement: Measurement.Imperial);
+WeatherModel currentWeather = client.GetCurrentWeather("10001", "US", measurement: Measurement.Imperial);
 Console.WriteLine(currentWeather.Main.Temperature);
 
 // Gets maps of the entire world.

@@ -16,7 +16,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, string cityName, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        GetCurrentWeatherAsync(client, cityName, measurement, language).Result;
+        client.GetCurrentWeatherAsync(cityName, measurement, language).Result;
 
     /// <summary>
     /// Gets the current weather of a given city.
@@ -28,7 +28,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, long cityId, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        GetCurrentWeatherAsync(client, cityId, measurement, language).Result;
+        client.GetCurrentWeatherAsync(cityId, measurement, language).Result;
     
     /// <summary>
     /// Gets the current weather of a given location.
@@ -41,7 +41,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, double latitude, double longitude, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        GetCurrentWeatherAsync(client, latitude, longitude, measurement, language).Result;
+        client.GetCurrentWeatherAsync(latitude, longitude, measurement, language).Result;
 
     /// <summary>
     /// Gets the current weather of a given location.
@@ -49,12 +49,12 @@ public static class CurrentWeather
     /// </summary>
     /// <param name="client"> The Weather client of the user. </param>
     /// <param name="zipCode"> The ZIP Code of the location. </param>
-    /// <param name="countryCode"> The ISO 3166 country code of the location. </param>
+    /// <param name="countryCode"> The ISO 3166 country code of the location, defaults to the United States. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
-    public static WeatherModel GetCurrentWeather(this WeatherClient client, long zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        GetCurrentWeatherAsync(client, zipCode, countryCode, measurement, language).Result;
+    public static WeatherModel GetCurrentWeather(this WeatherClient client, string zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
+        client.GetCurrentWeatherAsync(zipCode, countryCode, measurement, language).Result;
 
     /// <summary>
     /// Gets the current weather of a given city asynchronously.
@@ -108,11 +108,11 @@ public static class CurrentWeather
     /// </summary>
     /// <param name="client"> The Weather client of the user. </param>
     /// <param name="zipCode"> The ZIP Code of the location. </param>
-    /// <param name="countryCode"> The ISO 3166 country code of the location. </param>
+    /// <param name="countryCode"> The ISO 3166 country code of the location, defaults to the United States. </param>
     /// <param name="measurement"> The measurement system used in the output. </param>
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
-    public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, long zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English)
+    public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, string zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
         string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<WeatherModel>(file);
