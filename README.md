@@ -6,7 +6,9 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Nuget Package](https://www.nuget.org/packages/Weather.NET)
 - [Repository](https://github.com/EloyEspinosa/Weather.NET)
 - [Official Page](https://eloyespinosa.github.io/Weather.NET/)
-- [Documentation](https://eloyespinosa.github.io/Weather.NET/docs)
+- [Documentation](https://eloyespinosa.github.io/Weather.NET/docs/)
+- [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
+- [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
 ## Example
 ```c#
