@@ -16,7 +16,7 @@
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
     - Now the ZIP Code needs to be a string instead of a long, to account for different ZIP formats in different countries.
-    - Now the Weather.NET logo looks normal.
+- Now the Weather.NET logo looks normal.
     </PackageReleaseNotes>
   </PropertyGroup>
 

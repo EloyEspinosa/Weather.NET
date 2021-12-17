@@ -35,8 +35,6 @@ await client.DownloadWeatherMapAsync("pressureMap.png", MapLayer.Pressure, 0, 0,
 ...
 ```
 
-## Version 1.1.0
-There's no new features, but the code is now more readable, and there are two breaking API changes:
-- Now the library's code is cleaner and easier to use with the WeatherClient class.
-- Models.WeatherResponse is now called Models.WeatherModel.WeatherModel and it's now serializable.
-- Both the README and the official website contain a small tutorial on how to use the library.
+## Version 1.1.1
+- Now the ZIP Code needs to be a string instead of a long, to account for different ZIP formats in different countries.
+- Now the Weather.NET logo looks normal.
