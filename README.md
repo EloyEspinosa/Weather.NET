@@ -21,7 +21,7 @@ WeatherClient client = new WeatherClient("Your API key");
 
 // Gets a forecast of the London weather asynchronously, using the city name.
 List<WeatherModel> forecasts = await client.GetForecastAsync("London", 8, Measurement.Metric, Language.Spanish);
-Console.WriteLine(forecasts[7].Weather.Description);
+Console.WriteLine(forecasts[7].Weather[0].Description);
 
 // Gets the current temperature of New York synchronously, using the ZIP Code.
 WeatherModel currentWeather = client.GetCurrentWeather("10001", "US", measurement: Measurement.Imperial);
