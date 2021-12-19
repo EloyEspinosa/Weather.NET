@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
     <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports both synchronous and asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
@@ -15,8 +15,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - Now the ZIP Code needs to be a string instead of a long, to account for different ZIP formats in different countries.
-- Now the Weather.NET logo looks normal.
+    - Now the Air Pollution API is supported with the AirPollution class.
+- The responses are given in a new model, Models.PollutionModel.PollutionModel.
+- WeatherModel.Cod is now WeatherModel.StatusCode.
+- GlobalUsings.cs is a file of only global usings, for clearer code.
     </PackageReleaseNotes>
   </PropertyGroup>
 
