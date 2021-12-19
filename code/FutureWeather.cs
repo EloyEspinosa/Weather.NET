@@ -172,7 +172,7 @@ public static class FutureWeather
                 Timezone = json.city.timezone,
                 CityId = json.city.id,
                 CityName = json.city.name,
-                Cod = json.cod
+                StatusCode = json.cod
             });
         }
 

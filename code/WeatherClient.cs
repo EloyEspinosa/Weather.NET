@@ -1,10 +1,3 @@
-global using System.Net;
-global using Newtonsoft.Json;
-global using Weather.NET.Enums;
-global using Weather.NET.Exceptions;
-global using Weather.NET.Extensions;
-global using Weather.NET.Models.WeatherModel;
-
 namespace Weather.NET;
 
 /// <summary>
@@ -23,7 +16,6 @@ public class WeatherClient
     /// <param name="apiKey"> The api key of the user. </param>
     public WeatherClient(string apiKey)
     {
-        new WeatherClient("");
         ApiKey = apiKey;
     }
 

@@ -227,8 +227,8 @@ public class WeatherModel
     public string CityName { get; set; }
 
     /// <summary>
-    /// Internal parameter.
+    /// The HTTP status code of the API call.
     /// </summary>
     [JsonProperty("cod")]
-    public int Cod { get; set; }
+    public int StatusCode { get; set; }
 }
