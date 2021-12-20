@@ -14,7 +14,7 @@ public static class FutureWeatherExample
     // Use your API key here.
     public static WeatherClient Client = new WeatherClient("This is a real api key. Trust me.");
     
-    public static void StandardExample
+    public static void StandardExample()
     {
         // Uses Measurement.Standard as a measurement system, and Language.English as a language.
         List<WeatherModel> forecasts = Client.GetForecast("Canberra", 8);
@@ -27,7 +27,7 @@ public static class FutureWeatherExample
         }
     }
     
-    public static async Task MetricExample
+    public static async Task MetricExample()
     {
         List<WeatherModel> forecasts = await Client.GetForecastAsync(3448439, 3, Measurement.Metric, Language.BrazilianPortuguese);
         foreach (var forecast in forecasts)
@@ -38,7 +38,7 @@ public static class FutureWeatherExample
         }
     }
     
-    public static void ImperialExample
+    public static void ImperialExample()
     {
         var forecasts = FutureWeather.GetForecast(38.300, -76.507, 40, measurement: Measurement.Imperial);
         foreach (var forecast in forecasts)
@@ -51,4 +51,4 @@ public static class FutureWeatherExample
 }
 ```
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/examples)

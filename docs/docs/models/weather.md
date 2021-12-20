@@ -32,6 +32,6 @@ This serializable class contains the model of the API response of CurrentWeather
 - *Timezone* (int): Shift in seconds from UTC.
 - *CityId* (long): The OpenWeatherMap City ID. More information in [the OpenWeatherMap docs](https://openweathermap.org/current#cityid).
 - *CityName* (string): The name of the city analyzed.
-- *Cod* (int): The HTTP request status code. Internal parameter.
+- *StatusCode* (int): The HTTP request status code.
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/models/)

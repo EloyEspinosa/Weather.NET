@@ -4,8 +4,10 @@ Documentation for all of the library's classes.
 - [CurrentWeather](https://eloyespinosa.github.io/Weather.NET/docs/current)
 - [FutureWeather](https://eloyespinosa.github.io/Weather.NET/docs/forecast)
 - [WeatherMap](https://eloyespinosa.github.io/Weather.NET/docs/maps)
+- [AirPollution](https://eloyespinosa.github.io/Weather.NET/docs/pollution)
 - [Models](https://eloyespinosa.github.io/Weather.NET/docs/models)
   - [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models/weather)
+  - [PollutionModel](https://eloyespinosa.github.io/Weather.NET/docs/models/pollution)
 - [Enums](https://eloyespinosa.github.io/Weather.NET/docs/enums)
   - [Language](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages)
   - [Measurement](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements)
@@ -16,4 +18,4 @@ Documentation for all of the library's classes.
   - [HttpNotFoundException](https://eloyespinosa.github.io/Weather.NET/docs/exceptions/404exception)
   - [HttpTooManyRequestsException](https://eloyespinosa.github.io/Weather.NET/docs/exceptions/429exception)
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/)

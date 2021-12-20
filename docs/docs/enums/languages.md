@@ -48,4 +48,4 @@ This enum contains all possible languages.
 - Chinese (Traditional)
 - Zulu
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/enums)

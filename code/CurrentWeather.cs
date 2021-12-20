@@ -67,7 +67,7 @@ public static class CurrentWeather
     /// <returns> The current weather. </returns>
     public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, string cityName, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<WeatherModel>(file);
     }
 
@@ -82,7 +82,7 @@ public static class CurrentWeather
     /// <returns> The current weather. </returns>
     public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, long cityId, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?id={cityId}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?id={cityId}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<WeatherModel>(file);
     }
 
@@ -98,7 +98,7 @@ public static class CurrentWeather
     /// <returns> The current weather. </returns>
     public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, double latitude, double longitude, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<WeatherModel>(file);
     }
 
@@ -114,7 +114,7 @@ public static class CurrentWeather
     /// <returns> The current weather. </returns>
     public static async Task<WeatherModel> GetCurrentWeatherAsync(this WeatherClient client, string zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English)
     {
-        string file = await WeatherClient.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/weather?zip={zipCode},{countryCode}&appid={client.ApiKey}&units={measurement.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<WeatherModel>(file);
     }
 }

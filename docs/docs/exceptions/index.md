@@ -6,4 +6,4 @@ This namespace contains all custom exceptions of the library, used in multiple p
 - [HttpNotFoundException](https://eloyespinosa.github.io/Weather.NET/docs/exceptions/404exception)
 - [HttpTooManyRequests](https://eloyespinosa.github.io/Weather.NET/docs/exceptions/429exception)
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/)

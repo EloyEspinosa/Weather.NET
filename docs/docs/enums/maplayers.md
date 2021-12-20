@@ -9,4 +9,4 @@ This enum contains all possible types of maps.
 - WindSpeed
 - Snow
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/enums)

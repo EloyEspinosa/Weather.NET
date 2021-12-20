@@ -10,12 +10,19 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
 - [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
+## Features
+- [Current weather](https://eloyespinosa.github.io/Weather.NET/docs/current)
+- [Weather forecast](https://eloyespinosa.github.io/Weather.NET/docs/forecast)
+- [Weather maps](https://eloyespinosa.github.io/Weather.NET/docs/maps)
+- [Air pollution](https://eloyespinosa.github.io/Weather.NET/docs/pollution)
+
 ## Example
 ```c#
 using System;
 using Weather.NET;
 using Weather.NET.Enums;
 using Weather.NET.Models.WeatherModel;
+using Weather.NET.Models.PollutionModel;
 
 ...
 
@@ -32,9 +39,21 @@ Console.WriteLine(currentWeather.Main.Temperature);
 // Gets maps of the entire world.
 client.DownloadWeatherMap("temperatureMap.png", MapLayer.Temperature, 0, 0, 0);
 await client.DownloadWeatherMapAsync("pressureMap.png", MapLayer.Pressure, 0, 0, 0);
+
+// Gets the air pollution of Melbourne synchronously, using geo coordinates.
+PollutionModel currentPollution = client.GetCurrentAirPollution(-37.814, 144.9633);
+
+// Gets a forecast of the air pollution of Berlin asynchronously, using geo coordinates.
+PollutionModel futurePollution = await client.GetForecastAirPollutionAsync(52.5244, 13.4105);
+
+// Gets the history of the air pollution of Buenos Aires asynchronously, using geo coordinates and unix timestamps.
+PollutionModel historicalPollution = await client.GetHistoricalAirPollutionAsync(-34.6132, -58.3772);
 ...
 ```
 
-## Version 1.1.1
-- Now the ZIP Code needs to be a string instead of a long, to account for different ZIP formats in different countries.
-- Now the Weather.NET logo looks normal.
+## Version 1.2.0
+- Now the Air Pollution API is supported with the AirPollution class.
+- The responses are given in a new model, Models.PollutionModel.PollutionModel.
+- Now the Get...() methods in WeatherClient are in a static class called RestApi, and they are all now internal, not public.
+- WeatherModel.Cod is now WeatherModel.StatusCode.
+- GlobalUsings.cs is a new file of only global usings, for clearer code.

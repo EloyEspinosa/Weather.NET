@@ -6,4 +6,4 @@ This enum contains all possible measurement systems.
 - Metric (Celsius and meters)
 - Imperial (Fahrenheit and miles)
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/enums)

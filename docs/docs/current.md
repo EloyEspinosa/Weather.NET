@@ -1,6 +1,6 @@
 ## CurrentWeather
 This class provides extensions for the WeatherClient class, that get the current weather of a given location.
-### Extension Methods
+### Methods
 - *WeatherClient.GetCurrentWeather(cityName, measurement, language)*
 Gets a new [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models/weather) object with the current weather of a specific city.
     - *cityName* (string): The name of the city.
@@ -61,4 +61,4 @@ Gets a new [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models
     - *language* (Enums.Language): The language of the output. Defaults to Language.English.
     - *returns* (WeatherModel): The current weather of the city.
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/)

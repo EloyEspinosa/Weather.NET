@@ -14,7 +14,7 @@ public static class CurrentWeatherExample
     // Use your API key here.
     public static WeatherClient Client = new WeatherClient("This is an API key. I swear.");
     
-    public static void StandardExample
+    public static void StandardExample()
     {
         // Uses Measurement.Standard as a measurement system, and Language.English as a language.
         WeatherModel currentWeather = Client.GetCurrentWeather("Brighton");
@@ -24,7 +24,7 @@ public static class CurrentWeatherExample
         Console.WriteLine(currentWeather.Main.Temperature);
     }
     
-    public static async Task MetricExample
+    public static async Task MetricExample()
     {
         WeatherModel currentWeather = await Client.GetCurrentWeatherAsync(48.2085, 16.3721, Measurement.Metric, Language.German);
         
@@ -33,7 +33,7 @@ public static class CurrentWeatherExample
         Console.WriteLine(currentWeather.Main.Temperature);
     }
     
-    public static void ImperialExample
+    public static void ImperialExample()
     {
         // This is another way of using the GetCurrentWeather method.
         WeatherModel currentWeather = CurrentWeathe.GetCurrentWeather(Client, "10001", "US", measurement: Measurement.Imperial);
@@ -45,4 +45,4 @@ public static class CurrentWeatherExample
 }
 ```
 
-[Back to main page](https://eloyespinosa.github.io/Weather.NET/)
+[Back](https://eloyespinosa.github.io/Weather.NET/examples)
