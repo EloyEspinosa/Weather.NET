@@ -23,12 +23,12 @@ This serializable class contains the model of the API response of CurrentWeather
     - *Direction* (int): The direction of the wind in degrees.
 - *Clouds* (object): Information about the clouds.
     - *Percentage* (int): The percentage of clouds in the location.
-- *AnalysisDate* (long): The exact moment of the analysis, in unix seconds.
+- *AnalysisDate* (long): The exact moment of the analysis, in unix seconds, UTC.
 - *Internal* (object): Internal parameters.
     - *Message* (double): Internal parameter.
     - *Country* (string): The ISO 3166 country code of the location.
-    - *SunriseUnix* (long): The sunrise time in unix seconds.
-    - *SunsetUnix* (long): The sunset time in unix seconds.
+    - *SunriseUnix* (long): The sunrise time in unix seconds, UTC.
+    - *SunsetUnix* (long): The sunset time in unix seconds, UTC.
 - *Timezone* (int): Shift in seconds from UTC.
 - *CityId* (long): The OpenWeatherMap City ID. More information in [the OpenWeatherMap docs](https://openweathermap.org/current#cityid).
 - *CityName* (string): The name of the city analyzed.

@@ -143,13 +143,13 @@ public class Internal
     public string Country { get; set; }
 
     /// <summary>
-    /// The sunrise time in unix seconds.
+    /// The sunrise time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunrise")]
     public long SunriseUnix { get; set; }
 
     /// <summary>
-    /// The sunset time in unix seconds.
+    /// The sunset time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunset")]
     public long SunsetUnix { get; set; }
@@ -197,7 +197,7 @@ public class WeatherModel
     public Clouds Clouds { get; set; }
 
     /// <summary>
-    /// The exact moment of the analysis, in unix seconds.
+    /// The exact moment of the analysis, in unix seconds, UTC.
     /// </summary>
     [JsonProperty("dt")]
     public long AnalysisDate { get; set; }
