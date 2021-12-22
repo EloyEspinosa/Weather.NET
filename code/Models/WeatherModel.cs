@@ -203,6 +203,21 @@ public class WeatherModel
     public long AnalysisDate { get; set; }
 
     /// <summary>
+    /// The exact moment of the analysis, accounting for the timezone of the location, in unix seconds.
+    /// </summary>
+    public long AnalysisDateTimezone { get { return AnalysisDate + Timezone; } }
+
+    /// <summary>
+    /// The sunrise time, accounting for the timezone of the location, in unix seconds.
+    /// </summary>
+    public long SunriseTimezone { get { return Internal.SunriseUnix + Timezone; } }
+
+    /// <summary>
+    /// The sunset time, accounting for the timezone of the location, in unix seconds.
+    /// </summary>
+    public long SunsetTimezone { get { return Internal.SunsetUnix + Timezone; } }
+
+    /// <summary>
     /// Internal parameters.
     /// </summary>
     [JsonProperty("sys")]

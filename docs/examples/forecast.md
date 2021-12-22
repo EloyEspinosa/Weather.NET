@@ -21,8 +21,8 @@ public static class FutureWeatherExample
         
         foreach (WeatherModel forecast in forecasts)
         {
-            // Prints the time of the forecast in UTC.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDate).ToString());
+            // Prints the time of the forecast in the location's timezone.
+            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
             Console.WriteLine(forecast.Main.Temperature);
         }
     }
@@ -32,8 +32,8 @@ public static class FutureWeatherExample
         List<WeatherModel> forecasts = await Client.GetForecastAsync(3448439, 3, Measurement.Metric, Language.BrazilianPortuguese);
         foreach (var forecast in forecasts)
         {
-            // Prints the time of the forecast in UTC.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDate).ToString());
+            // Prints the time of the forecast in the location's timezone.
+            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
             Console.WriteLine(forecast.Main.Temperature);
         }
     }
@@ -43,8 +43,8 @@ public static class FutureWeatherExample
         var forecasts = FutureWeather.GetForecast(38.300, -76.507, 40, measurement: Measurement.Imperial);
         foreach (var forecast in forecasts)
         {
-            // Prints the time of the forecast in UTC.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDate).ToString());
+            // Prints the time of the forecast in the location's timezone.
+            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
             Console.WriteLine(forecast.Main.Temperature);
         }
     }

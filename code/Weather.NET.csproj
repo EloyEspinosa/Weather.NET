@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>1.2.0</PackageVersion>
+    <PackageVersion>1.2.1</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
     <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports both synchronous and asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
@@ -15,11 +15,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - Now the Air Pollution API is supported with the AirPollution class.
-- The responses are given in a new model, Models.PollutionModel.PollutionModel.
-- Now the Get...() methods in WeatherClient are in a static class called RestApi, and they are all now internal, not public.
-- WeatherModel.Cod is now WeatherModel.StatusCode.
-- GlobalUsings.cs is a file of only global usings, for clearer code.
+    - New properties in Models.WeatherModel that now account for timezones for you.
     </PackageReleaseNotes>
   </PropertyGroup>
 

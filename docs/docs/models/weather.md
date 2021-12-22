@@ -24,6 +24,9 @@ This serializable class contains the model of the API response of CurrentWeather
 - *Clouds* (object): Information about the clouds.
     - *Percentage* (int): The percentage of clouds in the location.
 - *AnalysisDate* (long): The exact moment of the analysis, in unix seconds, UTC.
+- *AnalysisDateTimezone* (long): The exact moment of the analysis, accounting for timezones, in unix seconds.
+- *SunriseTimezone* (long): The sunrise time, accounting for timezones, in unix seconds.
+- *SunsetTimezone* (long): The sunset time, accounting for timezones, in unix seconds.
 - *Internal* (object): Internal parameters.
     - *Message* (double): Internal parameter.
     - *Country* (string): The ISO 3166 country code of the location.
