@@ -51,9 +51,5 @@ PollutionModel historicalPollution = await client.GetHistoricalAirPollutionAsync
 ...
 ```
 
-## Version 1.2.0
-- Now the Air Pollution API is supported with the AirPollution class.
-- The responses are given in a new model, Models.PollutionModel.PollutionModel.
-- Now the Get...() methods in WeatherClient are in a static class called RestApi, and they are all now internal, not public.
-- WeatherModel.Cod is now WeatherModel.StatusCode.
-- GlobalUsings.cs is a new file of only global usings, for clearer code.
+## Version 1.2.1
+- New properties in Models.WeatherModel that now account for timezones for you.
