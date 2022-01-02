@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Weather.NET</PackageId>
-    <PackageVersion>1.2.1</PackageVersion>
+    <PackageVersion>1.3.0-rc.1</PackageVersion>
     <Authors>Eloy Espinosa</Authors>
     <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports both synchronous and asynchronous methods.</Description>
     <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
@@ -15,7 +15,14 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>openweathermap, weather, .net6, library</PackageTags>
     <PackageReleaseNotes>
-    - New properties in Models.WeatherModel that now account for timezones for you.
+    - Added support for the One Call API:
+    - OneCallApi contains extensions for WeatherClient that support calls to the API.
+    - Models.OneCallModel contains the model of the response of all One Call API calls.
+    - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
+    - RestApi now does not have synchronous methods.
+
+Note that this version is a prerelease that may contain bugs, that you can report in the project's repository.
+Since this version is a prerelease, the documentation may not be updated to this version.
     </PackageReleaseNotes>
   </PropertyGroup>
 

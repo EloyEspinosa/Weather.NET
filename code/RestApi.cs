@@ -2,7 +2,7 @@ namespace Weather.NET;
 
 internal static class RestApi
 {
-    internal static async Task<HttpResponseMessage> GetWebpageAsync(string url)
+    internal static async Task<HttpResponseMessage> GetAsync(string url)
     {
         HttpResponseMessage response = await client.GetAsync(url);
         try { response.EnsureSuccessStatusCode(); }
@@ -31,11 +31,8 @@ internal static class RestApi
         return response;
     }
 
-    internal static HttpResponseMessage GetWebpage(string url) => GetWebpageAsync(url).Result;
-    internal static async Task<string> GetWebpageStringAsync(string url) => await (await GetWebpageAsync(url)).Content.ReadAsStringAsync();
-    internal static string GetWebpageString(string url) => GetWebpageStringAsync(url).Result;
-    internal static async Task<Stream> GetWebpageStreamAsync(string url) => await (await GetWebpageAsync(url)).Content.ReadAsStreamAsync();
-    internal static Stream GetWebpageStream(string url) => GetWebpageStreamAsync(url).Result;
+    internal static async Task<string> GetWebpageStringAsync(string url) => await (await GetAsync(url)).Content.ReadAsStringAsync();
+    internal static async Task<Stream> GetWebpageStreamAsync(string url) => await (await GetAsync(url)).Content.ReadAsStreamAsync();
 
     private static readonly HttpClient client = new HttpClient();
 }
