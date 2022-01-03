@@ -4,6 +4,8 @@ First of all, thank you for trying to contribute to this project, any contributi
 There are multiple ways to contribute to this project:
 - Report a bug as an issue.
 - Suggest a new idea for the project as an issue.
+- Add or modify documentation (in the docs folder).
+- Modify or add things like the license, code of conduct, readme, etc.
 - Fork the project and add any new features, bug fixes, etc. and then make a pull request in this repository.
 - Download the source code, and modify it yourself, and then make a pull request in this repository.
 

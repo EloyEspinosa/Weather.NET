@@ -53,23 +53,21 @@ PollutionModel futurePollution = await client.GetForecastAirPollutionAsync(52.52
 // Gets the history of the air pollution of Buenos Aires asynchronously, using geo coordinates and unix timestamps.
 PollutionModel historicalPollution = await client.GetHistoricalAirPollutionAsync(-34.6132, -58.3772);
 
-// If using the 1.3.0 prerelease, using OpenWeather's One Call API is also available. (Gets the One Call API response of New Delhi)
+// Gets OpenWeather's One Call API response of New Delhi.
 OneCallModel currentOneCall = client.GetOneCall(28.6128, 77.2311, new ExcludeOneCall[]{ExcludeOneCall.Alerts}, Measurement.Metric, Language.Hindi);
 
-// Also using the 1.3.0 prerelease, gets a historical One Call API response of Ottawa.
+// Gets a historical One Call API response of Ottawa.
 OneCallModel historicalOneCall = await client.GetHistoricalOneCallAsync(45.4112, -75.6981, 1640900049, Measurement.Metric, Language.English);
 ...
 ```
 
-## Latest Stable Release: Version 1.2.1
-- New properties in Models.WeatherModel that now account for timezones for you.
-
-## Latest Prerelease: Version 1.3.0-rc.1
-- Added support for the One Call API:
-    - OneCallApi contains extensions for WeatherClient that support calls to the API.
-    - Models.OneCallModel contains the model of the response of all One Call API calls.
-    - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
-    - RestApi now does not have synchronous methods.
-
-Note that this version is a prerelease that may contain bugs, that you can report in the project's repository.
-Since this version is a prerelease, the documentation may not be updated to this version.
+## Latest Version: 1.3.0
+From 1.2.0:
+    - Added support for the One Call API:
+        - OneCallApi contains extensions for WeatherClient that support calls to the API.
+        - Models.OneCallModel contains the model of the response of all One Call API calls.
+        - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
+        - RestApi now does not have synchronous methods.
+    
+From 1.3.0-rc.1:
+    - Fixed a bug where Measurement and Language wouldn't work in historical One Call API calls.
