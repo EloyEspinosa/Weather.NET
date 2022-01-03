@@ -4,7 +4,7 @@ This serializable class contains the model of the API response of CurrentWeather
 - *Location* (object): Information about the location analyzed.
     - *Longitude* (double): The longitude of the location analyzed.
     - *Latitude* (double): The latitude of the location analyzed.
-- *Weather[0]* (object): Description of the weather.
+- *Weather* (object[]): Description of the weather.
     - *Id* (int): The OpenWeatherMap Weather ID.
     - *Title* (string): A small, one to two word description of the weather in english.
     - *Description* (string): A short description of the weather in [the language specified](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).

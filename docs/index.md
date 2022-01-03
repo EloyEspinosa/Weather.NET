@@ -5,7 +5,11 @@ Weather.NET is a .NET 6.0 library, that uses [OpenWeatherMap API](https://openwe
 - [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
 - [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
-### What's new in 1.2.1?
-- New properties in Models.WeatherModel that now account for timezones for you.
+### What's new in 1.3.0?
+- Added support for the One Call API:
+    - OneCallApi contains extensions for WeatherClient that support calls to the API.
+    - Models.OneCallModel contains the model of the response of all One Call API calls.
+    - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
+    - RestApi now does not have synchronous methods.
 
 [Back](https://eloyespinosa.github.io)

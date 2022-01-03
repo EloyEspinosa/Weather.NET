@@ -4,7 +4,7 @@ This serializable class contains the model of the api response of AirPollution.
 - *Coordinates* (object): Coordinates of the location analyzed.
     - *Longitude* (double): The longitude of the location analyzed.
     - *Latitude* (double): The latitude of the location analyzed.
-- *AirDescriptions[0]* (object): Information about the air.
+- *AirDescriptions* (object[]): Information about the air.
     - *AnalysisDate* (long): The moment of the analysis in unix seconds (utc).
     - *Main* (object): Contains the Air Quality Index.
         - *AirQuality* (int): The Air Quality index, to get more information, get AirDescriptions[0].AirQualityDescription.

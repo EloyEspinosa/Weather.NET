@@ -1,0 +1,101 @@
+## OneCallModel
+This serializable class contains the model of the API response of OneCallApi.
+### Properties
+- *Latitude* (double): The latitude of the location analyzed.
+- *Longitude* (double): The longitude of the location analyzed.
+- *TimezoneName* (string): The name of the location's timezone.
+- *TimezoneOffset* (int): Shift in seconds from UTC.
+- *AnalysisDateTimezone* (long): The analysis date in unix seconds, accounting for the location's timezone.
+- *CurrentWeather* (object?): The current weather, can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude).
+    - *AnalysisDate* (long): The analysis date in unix seconds, UTC.
+    - *SunriseTime* (long): The sunrise time in unix seconds, UTC.
+    - *SunsetTime* (long): The sunset time in unix seconds, UTC.
+    - *Temperature* (double): The temperature of the location, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *TemperaturePerception* (double): The temperature of the location, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *AtmosphericPressure* (int): The atmospheric pressure in the sea level, in hPa.
+    - *HumidityPercentage* (int): THe humidity (%) of the location.
+    - *DewPoint* (double): The atmospheric pressure (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *UVIndex* (double?): The current UV index, can be null in places where it is not available.
+    - *CloudPercentage* (int): The percentage of clouds in the sky.
+    - *Visibility* (int): The average visibility in meters.
+    - *WindSpeed* (double): The speed of the wind, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *WindDirection* (int): The direction of the wind in degrees.
+    - *Description* (object[]): Information and a description of the weather.
+        - *Id* (int): The OpenWeatherMap Weather ID.
+        - *Title* (string): A small description of the weather in english.
+        - *Description* (string): A short sentence that describes the weather in the [language given](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).
+        - *IconId* (string): The OpenWeatherMap Icon ID.
+        - *IconUrl* (string): The url of the weather icon.
+- *MinutelyForecasts* (object[]?): A list of minutely forecasts for 1 hour, that contain only the precipitation volume. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
+    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
+    - *PrecipitationVolume* (double): The precipitation in milimeters.
+- *HourlyForecasts* (object[]?): A list of hourly forecasts for 2 days. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude).
+    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
+    - *Temperature* (double): The temperature, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *TemperaturePerception* (double): The temperature, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *AtmosphericPressure* (int): The atmospheric pressure on the sea level, in hPa.
+    - *HumidityPercentage* (int): The humidity (%).
+    - *DewPoint* (double): The atmospheric temperature (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form.
+    - *UVIndex* (double?): The UV index. Can be null if not available.
+    - *CloudPercentage* (int): The amount of clouds in the sky (%).
+    - *Visibility* (int): The average visibility in meters.
+    - *WindSpeed* (double): The speed of the wind, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *WindDirection* (int): The direction of the wind, in degrees.
+    - *PrecipitationProbability* (double?): The probability of precipitation, can be null if not available.
+    - *Description* (object[]): Information and a description of the weather.
+        - *Id* (int): The OpenWeatherMap Weather ID.
+        - *Title* (string): A small description of the weather in english.
+        - *Description* (string): A short sentence that describes the weather in the [language given](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).
+        - *IconId* (string): The OpenWeatherMap Icon ID.
+        - *IconUrl* (string): The url of the weather icon.
+- *DailyForecasts* (object[]?): A list of daily forecasts for a week, can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
+    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
+    - *SunriseTime* (long): The sunrise time in unix seconds, UTC.
+    - *SunsetTime* (long): The sunset time in unix seconds, UTC.
+    - *MoonriseTime* (long): The moonrise time in unix seconds, UTC.
+    - *MoonsetTime* (long): The moonset time in unix seconds, UTC.
+    - *MoonPhaseIndex* (double): The moon phase:
+        - 0 and 1: New moon.
+        - 0 to 0.25: Waxing crescent.
+        - 0.25: First quarter moon.
+        - 0.25 and 0.5: Waxing gibous.
+        - 0.5: Full moon
+        - 0.5 to 0.75: Waning gibous.
+        - 0.75: Last quarter moon.
+        - 0.75 to 1: Waning crescent.
+    - *MoonPhase* (string): The moon phase in english.
+    - *Temperature* (object): Description of the temperature of the day, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+        - *Morning* (double): The morning temperature.
+        - *Day* (double): The day temperature.
+        - *Evening* (double): The evening temperature.
+        - *Night* (double): The night temperature.
+        - *Minimum* (double): The minimum temperature of the day.
+        - *Maximum* (double): The maximum temperature of the day.
+    - *TemperaturePerception* (object): Description of the temperature of the day, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+        - *Morning* (double): The morning temperature, accounting for the human perception of temperature.
+        - *Day* (double): The day temperature, accounting for the human perception of temperature.
+        - *Evening* (double): The evening temperature, accounting for the human perception of temperature.
+        - *Night* (double): The night temperature, accounting for the human perception of temperature.
+    - *AtmosphericPressure* (int): The atmospheric pressure on the sea level, in hPa.
+    - *HumidityPercentage* (int): The humidity (%).
+    - *DewPoint* (double): The atmospheric pressure (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form.
+    - *WindSpeed* (double): The speed of the wind. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *WindDirection* (double): The direction of the wind in degrees.
+    - *CloudPercentage* (int): The amount of clouds in the sky (%).
+    - *UVIndex* (double): The maximum UV index of the day.
+    - *PrecipitationProability* (double): The probability of precipitation.
+    - *Description* (object): Information and a description of the weather.
+        - *Id* (int): The OpenWeatherMap Weather ID.
+        - *Title* (string): A small description of the weather in english.
+        - *Description* (string): A short sentence that describes the weather in the [language given](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).
+        - *IconId* (string): The OpenWeatherMap Icon ID.
+        - *IconUrl* (string): The url of the weather icon.
+- *NationalAlerts* (object[]?): A list of national alerts from major national weather warning systems for the previous 5 days, the alerts can be either in english or in a local language. Can be excluded if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
+    - *Sender* (string): The name of the sender of the alert.
+    - *Event* (string): The event of the alert.
+    - *Start* (long): The date and time of the start of the alert in unix seconds, UTC.
+    - *End* (long): The date and time of the end of the alert in unix seconds, UTC.
+    - *Description* (string): The alert.
+    - *Tags* (string[]): Tags of the alert.
+
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/models/)
