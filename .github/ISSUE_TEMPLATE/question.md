@@ -7,4 +7,5 @@ assignees: ''
 
 ---
 
-- Explain your question.
+- Give a short description to your question.
+- Explain further, if needed.
