@@ -46,6 +46,7 @@ public static class OneCallApi
     /// There is no MinutelyForecast, DailyForecast and NationalAlerts,
     /// CurrentWeather refers to the requested date
     /// and HourlyForecast refers to an hourly analysis of the requested day.
+    /// More information in https://openweathermap.org/api/one-call-api#hist_parameter
     /// </summary>
     /// <param name="client"> The WeatherClient of the user. </param>
     /// <param name="latitude"> The latitude of the location. </param>
@@ -62,6 +63,7 @@ public static class OneCallApi
     /// There is no MinutelyForecast, DailyForecast and NationalAlerts,
     /// CurrentWeather refers to the requested date
     /// and HourlyForecast refers to an hourly analysis of the requested day.
+    /// More information in https://openweathermap.org/api/one-call-api#hist_parameter
     /// </summary>
     /// <param name="client"> The WeatherClient of the user. </param>
     /// <param name="latitude"> The latitude of the location. </param>
@@ -72,7 +74,7 @@ public static class OneCallApi
     /// <returns> The OneCallModel response, acting as a "time machine" as a normal OneCall API call but for the requested day. </returns>
     public static async Task<OneCallModel> GetHistoricalOneCallAsync(this WeatherClient client, double latitude, double longitude, long dateUnix, Measurement measurementSystem = Measurement.Standard, Language language = Language.English)
     {
-        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={latitude}&lon={longitude}&dt={dateUnix}&appid={client.ApiKey}&units={measurementSystem}&lang={language}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={latitude}&lon={longitude}&dt={dateUnix}&appid={client.ApiKey}&units={measurementSystem.Convert()}&lang={language.Convert()}");
         return JsonConvert.DeserializeObject<OneCallModel>(file);
     }
 }

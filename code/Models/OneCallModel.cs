@@ -6,19 +6,19 @@ namespace Weather.NET.Models.OneCallModel;
 public class Current
 {
     /// <summary>
-    /// The analysis date in unix seconds, in UTC.
+    /// The analysis date in unix seconds, UTC.
     /// </summary>
     [JsonProperty("dt")]
     public long AnalysisDate { get; set; }
 
     /// <summary>
-    /// The time of the sunrise in unix seconds, in UTC.
+    /// The sunrise time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunrise")]
     public long SunriseTime { get; set; }
 
     /// <summary>
-    /// The time of the sunset in unix seconds, in UTC.
+    /// The sunset time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunset")]
     public long SunsetTime { get; set; }
@@ -30,31 +30,31 @@ public class Current
     public double Temperature { get; set; }
 
     /// <summary>
-    /// The temperature of the location, accounting for the human perception of temperature. Depends on the measurement system.
+    /// The temperature of the location, depends on the measurement system.
     /// </summary>
     [JsonProperty("feels_like")]
     public double TemperaturePerception { get; set; }
 
     /// <summary>
-    /// The atmospheric pressure in the sea level in hPa.
+    /// The atmospheric pressure in the sea level, in hPa.
     /// </summary>
     [JsonProperty("pressure")]
     public int AtmosphericPressure { get; set; }
 
     /// <summary>
-    /// The humidity percentage of the location.
+    /// The humidity (%) of the location.
     /// </summary>
     [JsonProperty("humidity")]
     public int HumidityPercentage { get; set; }
 
     /// <summary>
-    /// The atmospheric temperature, varying according to pressure and humidity, below which water droplets begin to condense and dew can form.
+    /// The atmospheric temperature (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form. Depends on the measurement system.
     /// </summary>
     [JsonProperty("dew_point")]
     public double DewPoint { get; set; }
 
     /// <summary>
-    /// The current UV index.
+    /// The current UV index, can be null in places where it is not available.
     /// </summary>
     [JsonProperty("uvi")]
     public double? UVIndex { get; set; }
@@ -66,7 +66,7 @@ public class Current
     public int CloudPercentage { get; set; }
 
     /// <summary>
-    /// Average visibility in meters.
+    /// The average visibility in meters.
     /// </summary>
     [JsonProperty("visibility")]
     public int Visibility { get; set; }
@@ -84,10 +84,10 @@ public class Current
     public int WindDirection { get; set; }
 
     /// <summary>
-    /// Information and descriptions of the weather.
+    /// Information and a description of the weather.
     /// </summary>
     [JsonProperty("weather")]
-    public List<WeatherModel.Weather> Description { get; set; }
+    public WeatherModel.Weather[] Description { get; set; }
 }
 
 /// <summary>
@@ -144,13 +144,13 @@ public class Hourly
     public int HumidityPercentage { get; set; }
 
     /// <summary>
-    /// The atmospheric temperature, varying according to pressure and humidity, below which water droplets begin to condense and dew can form.
+    /// The atmospheric temperature (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form.
     /// </summary>
     [JsonProperty("dew_point")]
     public double DewPoint { get; set; }
 
     /// <summary>
-    /// The UV index.
+    /// The UV index. Can be null if not available.
     /// </summary>
     [JsonProperty("uvi")]
     public double? UVIndex { get; set; }
@@ -180,7 +180,7 @@ public class Hourly
     public int WindDirection { get; set; }
 
     /// <summary>
-    /// The probability of precepitation.
+    /// The probability of precepitation, can be null if not available.
     /// </summary>
     [JsonProperty("pop")]
     public double? PrecipitationProbability { get; set; }
@@ -189,7 +189,7 @@ public class Hourly
     /// Information and a description of the weather.
     /// </summary>
     [JsonProperty("weather")]
-    public List<WeatherModel.Weather> Description { get; set; }
+    public WeatherModel.Weather[] Description { get; set; }
 }
 
 /// <summary>
@@ -270,31 +270,31 @@ public class DayTemperaturePerception
 public class Daily
 {
     /// <summary>
-    /// The moment of the forecast in unix seconds, UTC.
+    /// Time of the forecasted data in unix seconds, UTC.
     /// </summary>
     [JsonProperty("dt")]
     public long AnalysisDate { get; set; }
 
     /// <summary>
-    /// The time of the sunrise in unix seconds, UTC.
+    /// The sunrise time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunrise")]
     public long SunriseTime { get; set; }
 
     /// <summary>
-    /// The time of the sunset in unix seconds, UTC.
+    /// The sunset time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("sunset")]
     public long SunsetTime { get; set; }
 
     /// <summary>
-    /// The time of when the moon rises for this day in unix seconds, UTC.
+    /// The moonrise time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("moonrise")]
     public long MoonriseTime { get; set; }
 
     /// <summary>
-    /// The time of when the moon sets for this day in unix seconds, UTC.
+    /// The moonset time in unix seconds, UTC.
     /// </summary>
     [JsonProperty("moonset")]
     public long MoonsetTime { get; set; }
@@ -345,7 +345,7 @@ public class Daily
     }
 
     /// <summary>
-    /// Description of the temperature of the day. Depends on the measurement system.
+    /// Description of the temperature of the day, depends on the measurement system.
     /// </summary>
     [JsonProperty("temp")]
     public DayTemperature Temperature { get; set; }
@@ -357,19 +357,19 @@ public class Daily
     public DayTemperaturePerception TemperaturePerception { get; set; }
 
     /// <summary>
-    /// Atmospheric pressure on the sea level in hPa.
+    /// Atmospheric pressure on the sea level, in hPa.
     /// </summary>
     [JsonProperty("pressure")]
     public int AtmosphericPressure { get; set; }
 
     /// <summary>
-    /// The humidity percentage.
+    /// The humidity (%).
     /// </summary>
     [JsonProperty("humidity")]
     public int HumidityPercentage { get; set; }
 
     /// <summary>
-    /// The atmospheric temperature, that varies according to pressuer and humidity, below which water droplets begin to condense and dew can form.
+    /// The atmospheric temperature (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form.
     /// Depends on the measurement system.
     /// </summary>
     [JsonProperty("dew_point")]
@@ -388,7 +388,7 @@ public class Daily
     public int WindDirection { get; set; }
 
     /// <summary>
-    /// The cloudiness of the sky (%).
+    /// The amount of clouds in the sky (%).
     /// </summary>
     [JsonProperty("clouds")]
     public int CloudPercentage { get; set; }
@@ -406,10 +406,10 @@ public class Daily
     public double PrecipitationProbability { get; set; }
 
     /// <summary>
-    /// The description of the weather.
+    /// Information and a description of the weather.
     /// </summary>
     [JsonProperty("weather")]
-    public List<WeatherModel.Weather> Description { get; set; }
+    public WeatherModel.Weather[] Description { get; set; }
 }
 
 /// <summary>
@@ -425,7 +425,7 @@ public class Alerts
     public string Sender { get; set; }
 
     /// <summary>
-    /// The name of the alert event.
+    /// The event of the alert.
     /// </summary>
     [JsonProperty("event")]
     public string Event { get; set; }
@@ -443,7 +443,7 @@ public class Alerts
     public long End { get; set; }
 
     /// <summary>
-    /// The alert given.
+    /// The alert.
     /// </summary>
     [JsonProperty("description")]
     public string Description { get; set; }
@@ -461,13 +461,13 @@ public class Alerts
 public class OneCallModel
 {
     /// <summary>
-    /// The latitude of the location.
+    /// The latitude of the location analyzed.
     /// </summary>
     [JsonProperty("lat")]
     public double Latitude { get; set; }
 
     /// <summary>
-    /// The longitude of the location.
+    /// The longitude of the location analyzed.
     /// </summary>
     [JsonProperty("lon")]
     public double Longitude { get; set; }
@@ -479,46 +479,46 @@ public class OneCallModel
     public string TimezoneName { get; set; }
 
     /// <summary>
-    /// The shift of seconds from UTC of the timezone.
+    /// Shift in seconds from UTC.
     /// </summary>
     [JsonProperty("timezone_offset")]
     public int TimezoneOffset { get; set; }
 
     /// <summary>
-    /// The analysis date in unix seconds, accounting for timezones.
+    /// The analysis date in unix seconds, accounting for the location's timezones.
     /// </summary>
     public long AnalysisDateTimezone { get { return CurrentWeather.AnalysisDate + TimezoneOffset; } }
 
 #nullable enable
 
     /// <summary>
-    /// Gets the One Call API information about the current weather.
+    /// The current weather, can be null if excluded.
     /// </summary>
     [JsonProperty("current")]
     public Current? CurrentWeather { get; set; }
 
     /// <summary>
-    /// A list of minutely forecasts for 1 hour that contains only the precipitation volume.
+    /// A list of minutely forecasts for 1 hour, that contain only the precipitation volume. Can be null if excluded or not available.
     /// </summary>
     [JsonProperty("minutely")]
-    public List<Minutely>? MinutelyForecasts { get; set; }
+    public Minutely[]? MinutelyForecasts { get; set; }
 
     /// <summary>
-    /// A list of hourly forecasts for 48 hours.
+    /// A list of hourly forecasts for 2 days. Can be null if excluded.
     /// </summary>
     [JsonProperty("hourly")]
-    public List<Hourly>? HourlyForecasts { get; set; }
+    public Hourly[]? HourlyForecasts { get; set; }
 
     /// <summary>
-    /// A list of daily forecasts for 7 days.
+    /// A list of daily forecasts for a week, can be null if excluded or not available.
     /// </summary>
     [JsonProperty("daily")]
-    public List<Daily>? DailyForecasts { get; set; }
+    public Daily[]? DailyForecasts { get; set; }
 
     /// <summary>
-    /// A list of national alerts from major national weather warning systems for the previous 5 days.<br />
-    /// The alerts can be either in enlish or in a local language.
+    /// A list of national alerts from major national weather warning systems for the previous 5 days,
+    /// the alerts can be either in english or in a local language. Can be null if excluded or not available.
     /// </summary>
     [JsonProperty("alerts")]
-    public List<Alerts>? NationalAlerts { get; set; }
+    public Alerts[]? NationalAlerts { get; set; }
 }

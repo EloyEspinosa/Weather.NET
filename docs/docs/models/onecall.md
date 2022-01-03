@@ -14,7 +14,7 @@ This serializable class contains the model of the API response of OneCallApi.
     - *TemperaturePerception* (double): The temperature of the location, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *AtmosphericPressure* (int): The atmospheric pressure in the sea level, in hPa.
     - *HumidityPercentage* (int): THe humidity (%) of the location.
-    - *DewPoint* (double): The atmospheric pressure (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
+    - *DewPoint* (double): The atmospheric temperature (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *UVIndex* (double?): The current UV index, can be null in places where it is not available.
     - *CloudPercentage* (int): The percentage of clouds in the sky.
     - *Visibility* (int): The average visibility in meters.
@@ -90,7 +90,7 @@ This serializable class contains the model of the API response of OneCallApi.
         - *Description* (string): A short sentence that describes the weather in the [language given](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).
         - *IconId* (string): The OpenWeatherMap Icon ID.
         - *IconUrl* (string): The url of the weather icon.
-- *NationalAlerts* (object[]?): A list of national alerts from major national weather warning systems for the previous 5 days, the alerts can be either in english or in a local language. Can be excluded if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
+- *NationalAlerts* (object[]?): A list of national alerts from major national weather warning systems for the previous 5 days, the alerts can be either in english or in a local language. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
     - *Sender* (string): The name of the sender of the alert.
     - *Event* (string): The event of the alert.
     - *Start* (long): The date and time of the start of the alert in unix seconds, UTC.
