@@ -18,11 +18,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    - name: Change directory
-      run: cd code
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore code/Weather.NET.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build code/Weather.NET.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test code/Weather.NET.csproj --no-build --verbosity normal
