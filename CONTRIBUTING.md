@@ -10,6 +10,8 @@ There are multiple ways to contribute to this project:
 - Download the source code, and modify it yourself, and then make a pull request in this repository.
 
 Suggestions:
+- Replace "Timezone" properties with a conversion to DateTime objects for unix dates.
+- Add missing properties that can be null.
 - Add a Tests folder in the code folder, that contains tests for the library.
 - Add documentation.
 

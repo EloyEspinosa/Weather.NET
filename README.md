@@ -3,6 +3,8 @@
 # Weather.NET
 A simple .NET library that uses OpenWeatherMap API to get the weather of different places and cities. Supports both synchronous and asynchronous methods.
 
+Sorry for the slow development lately! The hard drive where I worked on the next update died, so while I try to do it again, I'm leaving what I did in the [contributing file](https://github.com/EloyEspinosa/Weather.NET/blob/main/CONTRIBUTING.md) so that you can try doing it.
+
 - [Nuget Package](https://www.nuget.org/packages/Weather.NET)
 - [Repository](https://github.com/EloyEspinosa/Weather.NET)
 - [How to Contribute](https://github.com/EloyEspinosa/Weather.NET/blob/main/CONTRIBUTING.md)
