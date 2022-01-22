@@ -18,8 +18,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+    - name: Debug error 1
+      run: ls
     - name: Change directory
       run: cd code
+    - name: Debug error 2
+      run: ls
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
