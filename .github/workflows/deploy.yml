@@ -1,4 +1,4 @@
-name: Deployment
+name: Continuous Deployment
 
 on:
   push:
@@ -16,11 +16,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore code/Weather.NET.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build code/Weather.NET.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test code/Weather.NET.csproj --no-build --verbosity normal
     - name: Publish NuGet
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
