@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <PackageId>Weather.NET</PackageId>
+    <PackageVersion>1.3.0</PackageVersion>
+    <Authors>Eloy Espinosa</Authors>
+    <Description>A simple .NET 6 library that uses OpenWeatherMap API to give the weather and supports both synchronous and asynchronous methods.</Description>
+    <Copyright>Copyright (c) Eloy Espinosa 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://eloyespinosa.github.io/Weather.NET/</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/EloyEspinosa/Weather.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>openweathermap, weather, .net6, library</PackageTags>
+    <PackageReleaseNotes>
+    From 1.2.0:
+    - Added support for the One Call API:
+        - OneCallApi contains extensions for WeatherClient that support calls to the API.
+        - Models.OneCallModel contains the model of the response of all One Call API calls.
+        - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
+        - RestApi now does not have synchronous methods.
+    
+From 1.3.0-rc.1:
+    - Fixed a bug where Measurement and Language wouldn't work in historical One Call API calls.
+
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\images\logo.png" Pack="true" PackagePath="\"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

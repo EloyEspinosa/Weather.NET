@@ -1,0 +1,51 @@
+## Language
+This enum contains all possible languages.
+### Languages
+- Afrikaans
+- Albanian
+- Arabic
+- Azerbaijani
+- Bulgarian
+- Catalan
+- Czech
+- Danish
+- German
+- Greek
+- English
+- Basque
+- Persian/Farsi
+- Finnish
+- French
+- Galician
+- Hebrew
+- Hindi
+- Croatian
+- Hungarian
+- Indonesian
+- Italian
+- Japanese
+- Korean
+- Latvian
+- Lithuanian
+- Macedonian
+- Norwegian
+- Dutch
+- Polish
+- Portuguese
+- Brazilian Portuguese
+- Romanian
+- Russian
+- Swedish
+- Slovak
+- Slovenian
+- Spanish
+- Serbian
+- Thai
+- Turkish
+- Ukrainian
+- Vietnamese
+- Chinese (Simplified)
+- Chinese (Traditional)
+- Zulu
+
+[Back](https://eloyespinosa.github.io/Weather.NET/docs/enums)
