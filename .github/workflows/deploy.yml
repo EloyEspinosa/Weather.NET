@@ -1,11 +1,8 @@
-name: .NET
+name: CD
 
 on:
   push:
-    branches: main
-  pull_request:
-    branches: main
-  workflow_dispatch:
+    branches: release
 
 jobs:
   build:
@@ -24,3 +21,9 @@ jobs:
       run: dotnet build code/Weather.NET.csproj --no-restore
     - name: Test
       run: dotnet test code/Weather.NET.csproj --no-build --verbosity normal
+    - name: Publish NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PROJECT_FILE_PATH: code/Weather.NET.csproj
+        PACKAGE_NAME: Weather.NET
+        NUGET_KEY: ${{ secrets.NUGET_KEY }}
