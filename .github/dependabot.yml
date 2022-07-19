@@ -7,3 +7,4 @@ updates:
     directory: "/code/" # Location of package manifests
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 25
