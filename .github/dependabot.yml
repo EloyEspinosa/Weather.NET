@@ -1,0 +1,9 @@
+# For documentation:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/code/" # Location of package manifests
+    schedule:
+      interval: "weekly"
