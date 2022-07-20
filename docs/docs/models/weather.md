@@ -10,6 +10,7 @@ This serializable class contains the model of the API response of CurrentWeather
     - *Description* (string): A short description of the weather in [the language specified](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages).
     - *IconId* (string): The OpenWeatherMap Icon ID of the weather.
     - *IconUrl* (string): The url of the OpenWeatherMap Weather Icon.
+- *Base* (string): Internal parameter.
 - *Main* (object): Useful information about the weather, like the temperature.
     - *Temperature* (double): The temperature of the location analyzed. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *TemperaturePerception* (double): The temperature of the location, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
@@ -17,21 +18,28 @@ This serializable class contains the model of the API response of CurrentWeather
     - *TemperatureMax* (double): The maximum temperature observed. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *AtmosphericPressure* (int): The atmospheric pressure in hPa.
     - *HumidityPercentage* (int): The humidity (%) of the location.
-- *Visibility* (int): Internal parameter.
+- *Visibility* (int): Visibility in meters, the maximum value is 10km.
 - *Wind* (object): Information about the wind.
     - *Speed* (double): The speed of the wind. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *Direction* (int): The direction of the wind in degrees.
+    - *Gust* (double?): The wind gust. Can be null if not available.
 - *Clouds* (object): Information about the clouds.
     - *Percentage* (int): The percentage of clouds in the location.
-- *AnalysisDate* (long): The exact moment of the analysis, in unix seconds, UTC.
-- *AnalysisDateTimezone* (long): The exact moment of the analysis, accounting for timezones, in unix seconds.
-- *SunriseTimezone* (long): The sunrise time, accounting for timezones, in unix seconds.
-- *SunsetTimezone* (long): The sunset time, accounting for timezones, in unix seconds.
+- *Rain* (object?): Information about the rain. Can be null if not available.
+    - *PastHourVolume* (int?): Rain volume for the past hour.
+    - *Past3HoursVolume* (int?): Rain volume for the last 3 hours.
+- *Snow* (object?): Information about the snow. Can be null if not available.
+    - *PastHourVolume* (int?): Snow volume for the past hour.
+    - *Past3HoursVolume* (int?): Snow volume for the last 3 hours.
+- *AnalysisDateUnix* (long): The exact moment of the analysis, in unix seconds, UTC.
+- *AnalysisDate* (DateTime): The exact moment of the analysis, UTC.
 - *Internal* (object): Internal parameters.
     - *Message* (double): Internal parameter.
     - *Country* (string): The ISO 3166 country code of the location.
     - *SunriseUnix* (long): The sunrise time in unix seconds, UTC.
+    - *SunriseTime* (DateTime): The sunrise time, UTC.
     - *SunsetUnix* (long): The sunset time in unix seconds, UTC.
+    - *SunsetTime* (DateTime): The sunset time, UTC.
 - *Timezone* (int): Shift in seconds from UTC.
 - *CityId* (long): The OpenWeatherMap City ID. More information in [the OpenWeatherMap docs](https://openweathermap.org/current#cityid).
 - *CityName* (string): The name of the city analyzed.

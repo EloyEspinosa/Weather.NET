@@ -1,5 +1,5 @@
 ## FutureWeather Example
-This code example shows how to use the library to get the current weather of a location.
+This code example shows how to use the library to get the future weather of a location.
 
 ```c#
 using System;
@@ -21,8 +21,8 @@ public static class FutureWeatherExample
         
         foreach (WeatherModel forecast in forecasts)
         {
-            // Prints the time of the forecast in the location's timezone.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
+            // Prints the time of the forecast in UTC.
+            Console.WriteLine(forecast.AnalysisDate);
             Console.WriteLine(forecast.Main.Temperature);
         }
     }
@@ -32,8 +32,7 @@ public static class FutureWeatherExample
         List<WeatherModel> forecasts = await Client.GetForecastAsync(3448439, 3, Measurement.Metric, Language.BrazilianPortuguese);
         foreach (var forecast in forecasts)
         {
-            // Prints the time of the forecast in the location's timezone.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
+            Console.WriteLine(forecast.AnalysisDate);
             Console.WriteLine(forecast.Main.Temperature);
         }
     }
@@ -43,8 +42,7 @@ public static class FutureWeatherExample
         var forecasts = FutureWeather.GetForecast(38.300, -76.507, 40, measurement: Measurement.Imperial);
         foreach (var forecast in forecasts)
         {
-            // Prints the time of the forecast in the location's timezone.
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(forecast.AnalysisDateTimezone).ToString());
+            Console.WriteLine(forecast.AnalysisDate);
             Console.WriteLine(forecast.Main.Temperature);
         }
     }

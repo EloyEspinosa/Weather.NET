@@ -18,7 +18,7 @@ public static class AirPollutionExample
         // Gets the current air pollution.
         PollutionModel currentPollution = Client.GetCurrentAirPollution(39.9075, 116.3972);
 
-        Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(currentPollution.AirDescriptions[0].AnalysisDate).ToString());
+        Console.WriteLine(currentPollution.AirDescriptions[0].AnalysisDate);
         Console.WriteLine(currentPollution.AirDescriptions[0].AirQualityDescription);
     }
 
@@ -27,7 +27,7 @@ public static class AirPollutionExample
         // Gets a forecast of the air pollution.
         PollutionModel futurePollution = Client.GetForecastAirPollution(19.0144, 72.8479);
 
-        Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(futurePollution.AirDescriptions[0].AnalysisDate).ToString());
+        Console.WriteLine(futurePollution.AirDescriptions[0].AnalysisDate);
         Console.WriteLine(futurePollution.AirDescriptions[0].AirQualityDescription);
     }
 
@@ -38,7 +38,7 @@ public static class AirPollutionExample
 
         foreach (AirDescription description in historicalPollution.AirDescriptions)
         {
-            Console.WriteLine(DateTimeOffset.FromUnixTimeSeconds(description.AnalysisDate).ToString());
+            Console.WriteLine(description.AnalysisDate);
             Console.WriteLine(description.AirQualityDescription);
             Console.WriteLine();
         }

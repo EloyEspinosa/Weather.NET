@@ -204,6 +204,9 @@ public class Internal
     [JsonProperty("sunset")]
     public long SunsetUnix { get; set; }
 
+    /// <summary>
+    /// The sunset time, UTC.
+    /// </summary>
     public DateTime SunsetTime
     {
         get { return DateTimeOffset.FromUnixTimeSeconds(SunsetUnix).UtcDateTime; }

@@ -5,11 +5,13 @@ This serializable class contains the model of the API response of OneCallApi.
 - *Longitude* (double): The longitude of the location analyzed.
 - *TimezoneName* (string): The name of the location's timezone.
 - *TimezoneOffset* (int): Shift in seconds from UTC.
-- *AnalysisDateTimezone* (long): The analysis date in unix seconds, accounting for the location's timezone.
 - *CurrentWeather* (object?): The current weather, can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude).
-    - *AnalysisDate* (long): The analysis date in unix seconds, UTC.
-    - *SunriseTime* (long): The sunrise time in unix seconds, UTC.
-    - *SunsetTime* (long): The sunset time in unix seconds, UTC.
+    - *AnalysisDateUnix* (long): The analysis date in unix seconds, UTC.
+    - *AnalysisDate* (DateTime): The analysis date, UTC.
+    - *SunriseTimeUnix* (long): The sunrise time in unix seconds, UTC.
+    - *SunriseTime* (DateTime): The sunrise time, UTC.
+    - *SunsetTimeUnix* (long): The sunset time in unix seconds, UTC.
+    - *SunsetTime* (DateTime): The sunset time, UTC.
     - *Temperature* (double): The temperature of the location, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *TemperaturePerception* (double): The temperature of the location, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *AtmosphericPressure* (int): The atmospheric pressure in the sea level, in hPa.
@@ -20,6 +22,11 @@ This serializable class contains the model of the API response of OneCallApi.
     - *Visibility* (int): The average visibility in meters.
     - *WindSpeed* (double): The speed of the wind, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *WindDirection* (int): The direction of the wind in degrees.
+    - *WindGust* (double?): The wind gust. Can be null if not available.
+    - *Rain* (object?): Information about the rain. Can be null if not available.
+        - *PastHourVolume* (int?): Rain volume for the last hour.
+    - *Snow* (object?): Information about the snow. Can be null if not available.
+        - *PastHourVolume* (int?): Snow volume for the last hour.
     - *Description* (object[]): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
@@ -27,10 +34,12 @@ This serializable class contains the model of the API response of OneCallApi.
         - *IconId* (string): The OpenWeatherMap Icon ID.
         - *IconUrl* (string): The url of the weather icon.
 - *MinutelyForecasts* (object[]?): A list of minutely forecasts for 1 hour, that contain only the precipitation volume. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
-    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
+    - *AnalysisDateUnix* (long): Time of the forecasted data in unix seconds, UTC.
+    - *AnalysisDate* (DateTime): Time of the forecasted data, UTC.
     - *PrecipitationVolume* (double): The precipitation in milimeters.
 - *HourlyForecasts* (object[]?): A list of hourly forecasts for 2 days. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude).
-    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
+    - *AnalysisDateUnix* (long): Time of the forecasted data in unix seconds, UTC.
+    - *AnalysisDate* (DateTime): Time of the forecasted data, UTC.
     - *Temperature* (double): The temperature, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *TemperaturePerception* (double): The temperature, accounting for the human perception of temperature. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *AtmosphericPressure* (int): The atmospheric pressure on the sea level, in hPa.
@@ -41,7 +50,12 @@ This serializable class contains the model of the API response of OneCallApi.
     - *Visibility* (int): The average visibility in meters.
     - *WindSpeed* (double): The speed of the wind, depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
     - *WindDirection* (int): The direction of the wind, in degrees.
+    - *WindGust* (double?): The wind gust. Can be null if not available.
     - *PrecipitationProbability* (double?): The probability of precipitation, can be null if not available.
+    - *Rain* (object?): Information about the rain. Can be null if not available.
+        - *PastHourVolume* (int?): Rain volume for the past hour.
+    - *Snow* (object?): Information about the snow. Can be null if not available.
+        - *PastHourVolume* (int?): Snow volue for the past hour.
     - *Description* (object[]): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
@@ -49,11 +63,16 @@ This serializable class contains the model of the API response of OneCallApi.
         - *IconId* (string): The OpenWeatherMap Icon ID.
         - *IconUrl* (string): The url of the weather icon.
 - *DailyForecasts* (object[]?): A list of daily forecasts for a week, can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
-    - *AnalysisDate* (long): Time of the forecasted data in unix seconds, UTC.
-    - *SunriseTime* (long): The sunrise time in unix seconds, UTC.
-    - *SunsetTime* (long): The sunset time in unix seconds, UTC.
-    - *MoonriseTime* (long): The moonrise time in unix seconds, UTC.
-    - *MoonsetTime* (long): The moonset time in unix seconds, UTC.
+    - *AnalysisDateUnix* (long): Time of the forecasted data in unix seconds, UTC.
+    - *AnalysisDate* (DateTime): Time of the forecasted data, UTC.
+    - *SunriseTimeUnix* (long): The sunrise time in unix seconds, UTC.
+    - *SunriseTime* (DateTime): The sunrise time, UTC.
+    - *SunsetTimeUnix* (long): The sunset time in unix seconds, UTC.
+    - *SunsetTime* (DateTime): The sunset time, UTC.
+    - *MoonriseTimeUnix* (long): The moonrise time in unix seconds, UTC.
+    - *MoonriseTime* (DateTime): The moonrise time, UTC.
+    - *MoonsetTimeUnix* (long): The moonset time in unix seconds, UTC.
+    - *MoonsetTime* (DateTime): The moonset time, UTC.
     - *MoonPhaseIndex* (double): The moon phase:
         - 0 and 1: New moon.
         - 0 to 0.25: Waxing crescent.
@@ -80,10 +99,13 @@ This serializable class contains the model of the API response of OneCallApi.
     - *HumidityPercentage* (int): The humidity (%).
     - *DewPoint* (double): The atmospheric pressure (that varies according to pressure and humidity), below which water droplets begin to condense and dew can form.
     - *WindSpeed* (double): The speed of the wind. Depends on the [measurement system](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements).
-    - *WindDirection* (double): The direction of the wind in degrees.
+    - *WindDirection* (int): The direction of the wind in degrees.
+    - *WindGust* (double?): The wind gust. Can be null if not available.
     - *CloudPercentage* (int): The amount of clouds in the sky (%).
     - *UVIndex* (double): The maximum UV index of the day.
-    - *PrecipitationProability* (double): The probability of precipitation.
+    - *PrecipitationProbability* (double): The probability of precipitation.
+    - *Rain* (int?): Precipitation volume, can be null if not available.
+    - *Snow* (int?): Snow volume, can be null if not available.
     - *Description* (object): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
@@ -93,8 +115,10 @@ This serializable class contains the model of the API response of OneCallApi.
 - *NationalAlerts* (object[]?): A list of national alerts from major national weather warning systems for the previous 5 days, the alerts can be either in english or in a local language. Can be null if [excluded](https://eloyespinosa.github.io/Weather.NET/docs/enums/exclude) or not available.
     - *Sender* (string): The name of the sender of the alert.
     - *Event* (string): The event of the alert.
-    - *Start* (long): The date and time of the start of the alert in unix seconds, UTC.
-    - *End* (long): The date and time of the end of the alert in unix seconds, UTC.
+    - *StartUnix* (long): The date and time of the start of the alert in unix seconds, UTC.
+    - *Start* (DateTime): The date and time of the start of the alert, UTC.
+    - *EndUnix* (long): The date and time of the end of the alert in unix seconds, UTC.
+    - *End* (DateTime): The date and time of the end of the alert, UTC.
     - *Description* (string): The alert.
     - *Tags* (string[]): Tags of the alert.
 

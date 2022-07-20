@@ -63,18 +63,7 @@ OneCallModel historicalOneCall = await client.GetHistoricalOneCallAsync(45.4112,
 ...
 ```
 
-## Latest Version: 1.3.0
-From 1.2.0:
-    - Added support for the One Call API:
-        - OneCallApi contains extensions for WeatherClient that support calls to the API.
-        - Models.OneCallModel contains the model of the response of all One Call API calls.
-        - Enums.ExcludeOneCall contains parameters in the One Call response that can be excluded.
-        - RestApi now does not have synchronous methods.
-    
-From 1.3.0-rc.1:
-    - Fixed a bug where Measurement and Language wouldn't work in historical One Call API calls.
-
-## Beta Version: 1.3.1-beta.1
+## Latest Version: 1.3.1
 - Changed the dates from unix seconds to DateTime objects, and the old dates are now moved to a separate property. Example: Models.WeatherModel.AnalysisDate is moved to Models.WeatherModel.AnalysisDateUnix and Models.WeatherModel.AnalysisDate now contains a DateTime object.
 - Removed dates in unix seconds that accounted for timezones, instead of that, use the new DateTime objects with the timezone offset added. Ex: `Models.WeatherModel.AnalysisDate.AddSeconds(Models.WeatherModel.Timezone)`.
 - Added missing nullable properties like the wind gust, rain information and snow information.

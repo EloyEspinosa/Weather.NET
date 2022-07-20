@@ -9,9 +9,6 @@ There are multiple ways to contribute to this project:
 - Fork the project and add any new features, bug fixes, etc. and then make a pull request in this repository.
 - Download the source code, and modify it yourself, and then make a pull request in this repository.
 
-Suggestions:
-- Add documentation.
-
 ## Useful Links
 - [Report a bug](https://github.com/EloyEspinosa/Weather.NET/issues/new?assignees=&labels=&template=bug_report.md&title=)
 - [Suggest an idea](https://github.com/EloyEspinosa/Weather.NET/issues/new?assignees=&labels=&template=feature_request.md&title=)
