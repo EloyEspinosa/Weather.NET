@@ -1,6 +1,5 @@
 [![NuGet Package](https://img.shields.io/nuget/v/Weather.NET.svg?logo=nuget)](https://www.nuget.org/packages/Weather.NET)
 [![Build Status](https://github.com/EloyEspinosa/Weather.NET/actions/workflows/integrate.yml/badge.svg)](https://github.com/EloyEspinosa/Weather.NET/actions)
-[![Deploy Status](https://github.com/EloyEspinosa/Weather.NET/actions/workflows/deploy.yml/badge.svg)](https://github.com/EloyEspinosa/Weather.NET/actions)
 
 # Weather.NET
 A simple .NET library that uses OpenWeatherMap API to get the weather of different places and cities. Supports both synchronous and asynchronous methods.
