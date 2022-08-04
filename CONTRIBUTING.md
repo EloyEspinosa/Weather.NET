@@ -1,6 +1,8 @@
 # How to Contribute?
 First of all, thank you for trying to contribute to this project, any contributions you make are really appreciated.
 
+News: I decided to add a GPG key for my local commits, so you can verify that they are legitimate.
+
 There are multiple ways to contribute to this project:
 - Report a bug as an issue.
 - Suggest a new idea for the project as an issue.
