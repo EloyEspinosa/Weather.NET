@@ -140,13 +140,13 @@ public class Rain
     /// Rain volume for the past hour in mm.
     /// </summary>
     [JsonProperty("1h")]
-    public int? PastHourVolume { get; set; }
+    public double? PastHourVolume { get; set; }
 
     /// <summary>
     /// Rain volume for the last 3 hours in mm.
     /// </summary>
     [JsonProperty("3h")]
-    public int? Past3HoursVolume { get; set; }
+    public double? Past3HoursVolume { get; set; }
 }
 
 /// <summary>
@@ -158,13 +158,13 @@ public class Snow
     /// Snow volume for the past hour in mm.
     /// </summary>
     [JsonProperty("1h")]
-    public int? PastHourVolume { get; set; }
+    public double? PastHourVolume { get; set; }
 
     /// <summary>
     /// Snow volume for the last 3 hours in mm.
     /// </summary>
     [JsonProperty("3h")]
-    public int? Past3HoursVolume { get; set; }
+    public double? Past3HoursVolume { get; set; }
 }
 
 /// <summary>
