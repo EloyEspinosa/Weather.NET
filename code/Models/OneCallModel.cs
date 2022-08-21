@@ -9,7 +9,7 @@ public class Rain
     /// Rain volume for last hour, mm.
     /// </summary>
     [JsonProperty("1h")]
-    public int? PastHourVolume { get; set; }
+    public double? PastHourVolume { get; set; }
 }
 
 /// <summary>
@@ -21,7 +21,7 @@ public class Snow
     /// Snow volume for last hour, mm.
     /// </summary>
     [JsonProperty("1h")]
-    public int? PastHourVolume { get; set; }
+    public double? PastHourVolume { get; set; }
 }
 
 /// <summary>
@@ -563,13 +563,13 @@ public class Daily
     /// Precipitation volume in mm, can be null if not available.
     /// </summary>
     [JsonProperty("rain")]
-    public int? Rain { get; set; }
+    public double? Rain { get; set; }
 
     /// <summary>
     /// Snow volume in mm, can be null if not available.
     /// </summary>
     [JsonProperty("snow")]
-    public int? Snow { get; set; }
+    public double? Snow { get; set; }
 
     /// <summary>
     /// Information and a description of the weather.
