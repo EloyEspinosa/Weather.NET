@@ -5,9 +5,8 @@ Weather.NET is a .NET 6.0 library, that uses [OpenWeatherMap API](https://openwe
 - [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
 - [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
-### What's new in 1.3.1?
-- Changed the dates from unix seconds to DateTime objects, and the old dates are now moved to a separate property. Example: Models.WeatherModel.AnalysisDate is moved to Models.WeatherModel.AnalysisDateUnix and Models.WeatherModel.AnalysisDate now contains a DateTime object.
-- Removed dates in unix seconds that accounted for timezones, instead of that, use the new DateTime objects with the timezone offset added. Ex: `Models.WeatherModel.AnalysisDate.AddSeconds(Models.WeatherModel.Timezone)`.
-- Added missing nullable properties like the wind gust, rain information and snow information.
+### What's new in 1.3.2?
+- Fixed a bug (#2) where rain volume properties were set to integers, even though the value could a decimal number, so changed all of the rain volume properties from `int?` to `double?`.
+- Also changed all of the snow volume properties from `int?` to `double?`.
 
 [Back](https://eloyespinosa.github.io)

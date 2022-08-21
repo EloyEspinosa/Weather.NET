@@ -26,11 +26,11 @@ This serializable class contains the model of the API response of CurrentWeather
 - *Clouds* (object): Information about the clouds.
     - *Percentage* (int): The percentage of clouds in the location.
 - *Rain* (object?): Information about the rain. Can be null if not available.
-    - *PastHourVolume* (int?): Rain volume for the past hour.
-    - *Past3HoursVolume* (int?): Rain volume for the last 3 hours.
+    - *PastHourVolume* (double?): Rain volume for the past hour.
+    - *Past3HoursVolume* (double?): Rain volume for the last 3 hours.
 - *Snow* (object?): Information about the snow. Can be null if not available.
-    - *PastHourVolume* (int?): Snow volume for the past hour.
-    - *Past3HoursVolume* (int?): Snow volume for the last 3 hours.
+    - *PastHourVolume* (double?): Snow volume for the past hour.
+    - *Past3HoursVolume* (double?): Snow volume for the last 3 hours.
 - *AnalysisDateUnix* (long): The exact moment of the analysis, in unix seconds, UTC.
 - *AnalysisDate* (DateTime): The exact moment of the analysis, UTC.
 - *Internal* (object): Internal parameters.

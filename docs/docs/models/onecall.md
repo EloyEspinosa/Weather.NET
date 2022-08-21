@@ -24,9 +24,9 @@ This serializable class contains the model of the API response of OneCallApi.
     - *WindDirection* (int): The direction of the wind in degrees.
     - *WindGust* (double?): The wind gust. Can be null if not available.
     - *Rain* (object?): Information about the rain. Can be null if not available.
-        - *PastHourVolume* (int?): Rain volume for the last hour.
+        - *PastHourVolume* (double?): Rain volume for the last hour.
     - *Snow* (object?): Information about the snow. Can be null if not available.
-        - *PastHourVolume* (int?): Snow volume for the last hour.
+        - *PastHourVolume* (double?): Snow volume for the last hour.
     - *Description* (object[]): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
@@ -53,9 +53,9 @@ This serializable class contains the model of the API response of OneCallApi.
     - *WindGust* (double?): The wind gust. Can be null if not available.
     - *PrecipitationProbability* (double?): The probability of precipitation, can be null if not available.
     - *Rain* (object?): Information about the rain. Can be null if not available.
-        - *PastHourVolume* (int?): Rain volume for the past hour.
+        - *PastHourVolume* (double?): Rain volume for the past hour.
     - *Snow* (object?): Information about the snow. Can be null if not available.
-        - *PastHourVolume* (int?): Snow volue for the past hour.
+        - *PastHourVolume* (double?): Snow volue for the past hour.
     - *Description* (object[]): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
@@ -104,8 +104,8 @@ This serializable class contains the model of the API response of OneCallApi.
     - *CloudPercentage* (int): The amount of clouds in the sky (%).
     - *UVIndex* (double): The maximum UV index of the day.
     - *PrecipitationProbability* (double): The probability of precipitation.
-    - *Rain* (int?): Precipitation volume, can be null if not available.
-    - *Snow* (int?): Snow volume, can be null if not available.
+    - *Rain* (double?): Precipitation volume, can be null if not available.
+    - *Snow* (double?): Snow volume, can be null if not available.
     - *Description* (object): Information and a description of the weather.
         - *Id* (int): The OpenWeatherMap Weather ID.
         - *Title* (string): A small description of the weather in english.
