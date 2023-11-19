@@ -62,6 +62,5 @@ OneCallModel historicalOneCall = await client.GetHistoricalOneCallAsync(45.4112,
 ...
 ```
 
-## Latest Version: 1.3.2
-- Fixed a bug (#2) where rain volume properties were set to integers, even though the value could a decimal number, so changed all of the rain volume properties from `int?` to `double?`.
-- Also changed all of the snow volume properties from `int?` to `double?`.
+## Latest Version: 1.3.3
+- Updated to the latest LTS .NET version, .NET 8.
