@@ -13,7 +13,7 @@ public static class AirPollution
     /// <param name="latitude"> The latitude of the location. </param>
     /// <param name="longitude"> The longitude of the location. </param>
     /// <returns> The current air pollution. </returns>
-    public static PollutionModel GetCurrentAirPollution(this WeatherClient client, double latitude, double longitude) => client.GetCurrentAirPollutionAsync(latitude, longitude).Result;
+    public static PollutionModel GetCurrentAirPollution(this WeatherClient client, double latitude, double longitude) => Task.Run(() => client.GetCurrentAirPollutionAsync(latitude, longitude)).Result;
 
     /// <summary>
     /// Gets a forecast of the air pollution of a given location.
@@ -22,7 +22,7 @@ public static class AirPollution
     /// <param name="latitude"> The latitude of the location. </param>
     /// <param name="longitude"> The longitude of the location. </param>
     /// <returns> The forecast of the air pollution. </returns>
-    public static PollutionModel GetForecastAirPollution(this WeatherClient client, double latitude, double longitude) => client.GetForecastAirPollutionAsync(latitude, longitude).Result;
+    public static PollutionModel GetForecastAirPollution(this WeatherClient client, double latitude, double longitude) => Task.Run(() => client.GetForecastAirPollutionAsync(latitude, longitude)).Result;
 
     /// <summary>
     /// Gets a historical record of the air pollution of a given location.

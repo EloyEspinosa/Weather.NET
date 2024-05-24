@@ -18,7 +18,7 @@ public static class OneCallApi
     /// <param name="language"> The language of the output. </param>
     /// <returns> The OneCall API response, excluding the said parameters. </returns>
     public static OneCallModel GetOneCall(this WeatherClient client, double latitude, double longitude, ExcludeOneCall[] exclude, Measurement measurementSystem = Measurement.Standard, Language language = Language.English) =>
-        client.GetOneCallAsync(latitude, longitude, exclude, measurementSystem, language).Result;
+        Task.Run(() => client.GetOneCallAsync(latitude, longitude, exclude, measurementSystem, language)).Result;
 
     /// <summary>
     /// Gets the One Call API that contains the current weather, minutely, hourly, daily forecasts and national alerts asynchronously.
@@ -56,7 +56,7 @@ public static class OneCallApi
     /// <param name="language"> The language of the output. </param>
     /// <returns> The OneCallModel response, acting as a "time machine" as a normal OneCall API call but for the requested day. </returns>
     public static OneCallModel GetHistoricalOneCall(this WeatherClient client, double latitude, double longitude, long dateUnix, Measurement measurementSystem = Measurement.Standard, Language language = Language.English) =>
-        client.GetHistoricalOneCallAsync(latitude, longitude, dateUnix, measurementSystem, language).Result;
+        Task.Run(() => client.GetHistoricalOneCallAsync(latitude, longitude, dateUnix, measurementSystem, language)).Result;
 
     /// <summary>
     /// Gets a historical One Call API call to goes up to 5 days in the past.

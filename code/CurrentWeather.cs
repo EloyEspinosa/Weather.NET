@@ -16,7 +16,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, string cityName, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetCurrentWeatherAsync(cityName, measurement, language).Result;
+        Task.Run(() => client.GetCurrentWeatherAsync(cityName, measurement, language)).Result;
 
     /// <summary>
     /// Gets the current weather of a given city.
@@ -28,7 +28,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, long cityId, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetCurrentWeatherAsync(cityId, measurement, language).Result;
+        Task.Run(() => client.GetCurrentWeatherAsync(cityId, measurement, language)).Result;
     
     /// <summary>
     /// Gets the current weather of a given location.
@@ -41,7 +41,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, double latitude, double longitude, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetCurrentWeatherAsync(latitude, longitude, measurement, language).Result;
+        Task.Run(() => client.GetCurrentWeatherAsync(latitude, longitude, measurement, language)).Result;
 
     /// <summary>
     /// Gets the current weather of a given location.
@@ -54,7 +54,7 @@ public static class CurrentWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> The current weather. </returns>
     public static WeatherModel GetCurrentWeather(this WeatherClient client, string zipCode, string countryCode, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetCurrentWeatherAsync(zipCode, countryCode, measurement, language).Result;
+        Task.Run(() => client.GetCurrentWeatherAsync(zipCode, countryCode, measurement, language)).Result;
 
     /// <summary>
     /// Gets the current weather of a given city asynchronously.
