@@ -17,7 +17,7 @@ public static class FutureWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> A list of weather forecasts, with their exact moment. </returns>
     public static List<WeatherModel> GetForecast(this WeatherClient client, string cityName, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetForecastAsync(cityName, timestampCount, measurement, language).Result;
+        Task.Run(() => client.GetForecastAsync(cityName, timestampCount, measurement, language)).Result;
 
     /// <summary>
     /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
@@ -30,7 +30,7 @@ public static class FutureWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> A list of weather forecasts, with their exact moment. </returns>
     public static List<WeatherModel> GetForecast(this WeatherClient client, long cityId, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetForecastAsync(cityId, timestampCount, measurement, language).Result;
+        Task.Run(() => client.GetForecastAsync(cityId, timestampCount, measurement, language)).Result;
 
     /// <summary>
     /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
@@ -44,7 +44,7 @@ public static class FutureWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> A list of weather forecasts, with their exact moment. </returns>
     public static List<WeatherModel> GetForecast(this WeatherClient client, double latitude, double longitude, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetForecastAsync(latitude, longitude, timestampCount, measurement, language).Result;
+        Task.Run(() => client.GetForecastAsync(latitude, longitude, timestampCount, measurement, language)).Result;
 
     /// <summary>
     /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval.
@@ -58,7 +58,7 @@ public static class FutureWeather
     /// <param name="language"> The language of the output. </param>
     /// <returns> A list of weather forecasts, with their exact moment. </returns>
     public static List<WeatherModel> GetForecast(this WeatherClient client, string zipCode, string countryCode, int timestampCount = 96, Measurement measurement = Measurement.Standard, Language language = Language.English) =>
-        client.GetForecastAsync(zipCode, countryCode, timestampCount, measurement, language).Result;
+        Task.Run(() => client.GetForecastAsync(zipCode, countryCode, timestampCount, measurement, language)).Result;
 
     /// <summary>
     /// Gets a list of weather forecasts with a 5 day limit and a 3 hour interval asynchronously.
