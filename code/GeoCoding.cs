@@ -46,7 +46,7 @@ public static class GeoCoding
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static List<LocationNameByCoordinatesResponse> LocationNameByCoordinates(this WeatherClient client,
         double latitude, double longitude, int limit) =>
-        Task.Run(() => client.LocationNameByCoordinatesResponseAsync(latitude, longitude, limit)).Result;
+        Task.Run(() => client.LocationNameByCoordinatesAsync(latitude, longitude, limit)).Result;
 
     /// <summary>
     /// Direct geocoding allows to get geographical coordinates (lat, lon) by using name of the location (city name or area name). If you use the limit parameter in the API call, you can cap how many locations with the same name will be seen in the API response (for instance, London in the UK and London in the US)
@@ -86,7 +86,7 @@ public static class GeoCoding
     /// <param name="longitude"> Longitude. </param>
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
-    public static async Task<List<LocationNameByCoordinatesResponse>> LocationNameByCoordinatesResponseAsync(this WeatherClient client,
+    public static async Task<List<LocationNameByCoordinatesResponse>> LocationNameByCoordinatesAsync(this WeatherClient client,
         double latitude, double longitude, int limit)
     {
         string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={limit}&appid={client.ApiKey}");
