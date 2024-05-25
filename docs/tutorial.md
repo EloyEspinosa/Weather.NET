@@ -15,13 +15,19 @@ After the package has been installed and referenced in your project, you can sta
 To start using the package, just create a new `WeatherClient` object, using your API key as the only argument. This will give you access to the following methods:
 - `GetCurrentWeather` and `GetCurrentWeatherAsync`: Gets the current weather of a location.
 - `GetForecast` and `GetForecastAsync`: Gets a list of forecasts.
-- `GetWeatherMapUrl`: Gets the url of a OpenWeatherMap 1.0 Weather Map.
-- `DownloadWeatherMap` and `DownloadWeatherMapAsync`: Downloads a png of a OpenWeatherMap 1.0 Weather Map.
 - `GetCurrentAirPollution` and `GetCurrentAirPollutionAsync`: Gets a current description of the air pollution of a location.
 - `GetForecastAirPollution` and `GetForecastAirPollutionAsync`: Gets a forecast of the air pollution of a location.
 - `GetHistoricalAirPollution` and `GetHistoricalAirPollutionAsync`: Gets a historical record of the air pollution of a location.
 - `GetOneCall` and `GetOneCallAsync`: Gets, with one call, the current weather, a minutely forecast for the next minute, a hourly forecast for the next two days, a daily forecast for the next week, and national weather alerts of a location.
 - `GetHistoricalOneCall` and `GetHistoricalOneCallAsync`: Gets a historical One Call API response, for a certain day, for a given location.
+- `GetWeatherMapUrl`: Gets the url of a OpenWeatherMap 1.0 Weather Map.
+- `DownloadWeatherMap` and `DownloadWeatherMapAsync`: Downloads an OpenWeatherMap 1.0 Weather Map.
+- `GetStreetMapUrl`: Gets the url of a OpenStreetMap Base Map
+- `DownloadStreetMap`and `DownloadStreetMapAsync`: Downloads a OpenStreetMap Base Map.
+And you will also be able to use the GeoCoding API, with the following methods:
+- `CoordinatesByLocationName`and `CoordinatesByLocationNameAsync`: Gets the geographical coordinates of a location using it's name.
+- `CoordinatesByZipCode` and `CoordinatesByZipCodeAsync`: Converts a location's zip code into its geographical coordinates.
+- `LocationNameByCoordinates` and `LocationNameByCoordinatesAsync`: Gets all locations that match given geographical coordinates.
 
 More information can be found in the [documentation](https://eloyespinosa.github.io/Weather.NET/docs).
 
