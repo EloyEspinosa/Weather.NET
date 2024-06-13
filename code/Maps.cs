@@ -1,10 +1,10 @@
 namespace Weather.NET;
 
 /// <summary>
-/// Gets or downloads a OpenWeatherMap weather map (1.0).
-/// More information in https://openweathermap.org/api/weathermaps
+/// Gets or downloads different types of maps.
+/// More information in https://openweathermap.org/api/weathermaps and https://operations.osmfoundation.org/policies/tiles
 /// </summary>
-public static class WeatherMap
+public static class Maps
 {
     /// <summary>
     /// Gets the url of an OpenWeatherMap Weather Layer Map (1.0).
