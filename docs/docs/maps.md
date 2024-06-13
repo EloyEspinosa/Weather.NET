@@ -1,5 +1,13 @@
 ## WeatherMap
 This class provides extension methods for WeatherClient that get layer maps of the weather.
+
+### Functions
+*LatLongToTileCoordinates(zoom, latitude, longitude)*: Converts latitude and longitude to tile coordinates.
+- *zoom* (int): The level of zoom of the map.
+- *latitude* (double): Latitude.
+- *longitude* (double): Longitude.
+- *returns* ((int, int)): The pair of tile coordinates.
+
 ### Methods
 *WeatherClient.GetMapUrl(layer, zoom, latitude, longitude)*: Gets the url of an OpenWeatherMap Weather Layer Map (1.0).
 - *layer* (Enums.MapLayer): The type of map.
