@@ -1,5 +1,5 @@
-## WeatherMap
-This class provides extension methods for WeatherClient that get layer maps of the weather.
+## Maps
+This class provides extension methods for WeatherClient that get layer maps of the weather using OpenWeatherMap's Weather Layer Map, and street maps using OpenStreetMap's Base Map.
 
 ### Functions
 *LatLongToTileCoordinates(zoom, latitude, longitude)*: Converts latitude and longitude to tile coordinates.
