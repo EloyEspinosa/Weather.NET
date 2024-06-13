@@ -130,8 +130,19 @@ public static class WeatherMap
     public static string GetStreetMapUrl(this WeatherClient client, int zoom, double latitude, double longitude)
     {
         var tileCoordinates = LatLongToTileCoordinates(zoom, latitude, longitude);
-        return client.GetStreetMapUrl( zoom, tileCoordinates.x, tileCoordinates.y);
+        return client.GetStreetMapUrl(zoom, tileCoordinates.x, tileCoordinates.y);
     }
+
+    /// <summary>
+    /// Downloads an OpenStreetMap Base Map
+    /// </summary>
+    /// <param name="client"> The client, that contains the API key. </param>
+    /// <param name="fileName"> The file path where the map will be downloaded. </param>
+    /// <param name="zoom"> The level of zoom of the map. </param>
+    /// <param name="xCoord"> The x tile coordinate of the map. </param>
+    /// <param name="yCoord"> The y tile coordinate of the map. </param>
+    public static void DownloadStreetMap(this WeatherClient client, string fileName, int zoom, int xCoord, int yCoord) =>
+        Task.Run(() => client.DownloadStreetMapAsync(fileName, zoom, xCoord, yCoord));
 
     /// <summary>
     /// Downloads an OpenStreetMap Base Map
