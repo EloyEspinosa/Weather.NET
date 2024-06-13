@@ -12,14 +12,14 @@ A simple .NET library that uses OpenWeatherMap API to get the weather of differe
 - [Official Page](https://eloyespinosa.github.io/Weather.NET/)
 - [Documentation](https://eloyespinosa.github.io/Weather.NET/docs/)
 - [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
-- [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
 ## Features
 - [One Call API](https://eloyespinosa.github.io/Weather.NET/docs/onecall)
 - [Current weather](https://eloyespinosa.github.io/Weather.NET/docs/current)
 - [Weather forecast](https://eloyespinosa.github.io/Weather.NET/docs/forecast)
-- [Weather maps](https://eloyespinosa.github.io/Weather.NET/docs/maps)
+- [Weather and street maps](https://eloyespinosa.github.io/Weather.NET/docs/maps)
 - [Air pollution](https://eloyespinosa.github.io/Weather.NET/docs/pollution)
+- [GeoCoding](https://eloyespinosa.github.io/Weather.NET/docs/geocoding)
 
 ## Example
 ```c#

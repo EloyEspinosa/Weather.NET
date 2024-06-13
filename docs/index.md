@@ -3,7 +3,6 @@ Weather.NET is a .NET 8 library, that uses [OpenWeatherMap API](https://openweat
 
 - [Documentation](https://eloyespinosa.github.io/Weather.NET/docs/)
 - [Tutorial](https://eloyespinosa.github.io/Weather.NET/tutorial)
-- [Examples](https://eloyespinosa.github.io/Weather.NET/examples/)
 
 ### What's new in 1.3.3?
 - Updated to the latest LTS .NET version, .NET 8.

@@ -30,8 +30,6 @@ And you will also be able to use the GeoCoding API, with the following methods:
 - `LocationNameByCoordinates` and `LocationNameByCoordinatesAsync`: Gets all locations that match given geographical coordinates.
 
 More information can be found in the [documentation](https://eloyespinosa.github.io/Weather.NET/docs).
-
-You can also look at some code [examples](https://eloyespinosa.github.io/Weather.NET/examples).
 <br>
 <br>
 <br>
