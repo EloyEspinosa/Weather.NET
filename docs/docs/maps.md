@@ -71,7 +71,6 @@ Downloads an OpenStreetMap Base Map.
 - *zoom* (int): The level of zoom of the map.
 - *latitude* (double): Latitude.
 - *longitude* (double): Longitude.
-- *returns* (Task): A task of the download.
 
 *WeatherClient.DownloadWeatherMapAsync(fileName, layer, zoom, xCoord, yCoord)*: Downloads an OpenWeatherMap Weather Layer Map (1.0) asynchronously.
 - *fileName* (string): The file path where the map will be downloaded.
@@ -79,7 +78,6 @@ Downloads an OpenStreetMap Base Map.
 - *zoom* (int): The level of zoom of the map.
 - *xCoord* (int): The x tile coordinate of the map.
 - *yCoord* (int): The y tile coordinate of the map.
-- *returns* (Task): A task of the download.
 
 *WeatherClient.DownloadStreetMapAsync(fileName, zoom, latitude, longitude)*:
 Downloads an OpenStreetMap Base Map asynchronously.
@@ -87,7 +85,6 @@ Downloads an OpenStreetMap Base Map asynchronously.
 - *zoom* (int): The level of zoom of the map.
 - *latitude* (double): Latitude.
 - *longitude* (double): Longitude.
-- *returns* (Task): A task of the download.
 
 *WeatherClient.DownloadStreetMapAsync(fileName, zoom, xCoord, yCoord)*:
 Downloads an OpenStreetMap Base Map asynchronously.
@@ -95,6 +92,5 @@ Downloads an OpenStreetMap Base Map asynchronously.
 - *zoom* (int): The level of zoom of the map.
 - *xCoord* (int): The x tile coordinate of the map.
 - *yCoord* (int): The y tile coordinate of the map.
-- *returns* (Task): A task of the download.
 
 [Back](https://eloyespinosa.github.io/Weather.NET/docs/)
