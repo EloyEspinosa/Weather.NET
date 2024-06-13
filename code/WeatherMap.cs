@@ -183,10 +183,17 @@ public static class WeatherMap
         await DownloadUrl(fileName, client.GetStreetMapUrl(zoom, latitude, longitude));
     }
 
-    public static (int x, int y) LatLongToTileCoordinates(int zoomLevel, double latitude, double longitude, int tileSizeInPoints = 256)
+    /// <summary>
+    /// Converts latitude and longitude to tile coordinates.
+    /// </summary>
+    /// <param name="zoom"> The level of zoom of the map. </param>
+    /// <param name="latitude"> Latitude. </param>
+    /// <param name="longitude"> Longitude. </param>
+    /// <returns> The pair of tile coordinates. </returns>
+    public static (int x, int y) LatLongToTileCoordinates(int zoom, double latitude, double longitude)
     {
         double latRad = latitude * Math.PI / 180;
-        double n = Math.Pow(2, zoomLevel);
+        double n = Math.Pow(2, zoom);
         int x = (int)Math.Floor((longitude + 180.0) / 360.0 * n);
         int y = (int)Math.Floor((1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * n);
 
