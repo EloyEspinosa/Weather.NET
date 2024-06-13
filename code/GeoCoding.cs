@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Security;
 using Weather.NET.Models.GeoCodingModel;
 
 namespace Weather.NET;
