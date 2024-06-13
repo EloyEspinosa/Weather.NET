@@ -6,6 +6,7 @@ Documentation for all of the library's classes.
 - [OneCallApi](https://eloyespinosa.github.io/Weather.NET/docs/onecall)
 - [Maps](https://eloyespinosa.github.io/Weather.NET/docs/maps)
 - [AirPollution](https://eloyespinosa.github.io/Weather.NET/docs/pollution)
+- [GeoCoding](https://eloyespinosa.github.io/Weather.NET/docs/geocoding)
 - [Models](https://eloyespinosa.github.io/Weather.NET/docs/models)
   - [OneCallModel](https://eloyespinosa.github.io/Weather.NET/docs/models/onecall)
   - [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models/weather)
