@@ -11,6 +11,7 @@ Documentation for all of the library's classes.
   - [OneCallModel](https://eloyespinosa.github.io/Weather.NET/docs/models/onecall)
   - [WeatherModel](https://eloyespinosa.github.io/Weather.NET/docs/models/weather)
   - [PollutionModel](https://eloyespinosa.github.io/Weather.NET/docs/models/pollution)
+  - [GeoCodingModel](https://eloyespinosa.github.io/Weather.NET/docs/models/geocoding)
 - [Enums](https://eloyespinosa.github.io/Weather.NET/docs/enums)
   - [Language](https://eloyespinosa.github.io/Weather.NET/docs/enums/languages)
   - [Measurement](https://eloyespinosa.github.io/Weather.NET/docs/enums/measurements)
