@@ -41,7 +41,7 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static List<LocationNameByCoordinatesResponse> LocationNameByCoordinates(this WeatherClient client,
-        double latitude, double longitude, int limit=5) =>
+        double latitude, double longitude, int limit=0) =>
         Task.Run(() => client.LocationNameByCoordinatesAsync(latitude, longitude, limit)).Result;
 
     /// <summary>
@@ -84,9 +84,9 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static async Task<List<LocationNameByCoordinatesResponse>> LocationNameByCoordinatesAsync(this WeatherClient client,
-        double latitude, double longitude, int limit=5)
+        double latitude, double longitude, int limit=0)
     {
-        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={limit}&appid={client.ApiKey}");
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}{(limit != 0 ? $"&limit={limit}" : "")}&appid={client.ApiKey}");
         return JsonConvert.DeserializeObject<List<LocationNameByCoordinatesResponse>>(file);
     }
 
