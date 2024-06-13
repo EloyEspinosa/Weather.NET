@@ -4,7 +4,7 @@ Documentation for all of the library's classes.
 - [CurrentWeather](https://eloyespinosa.github.io/Weather.NET/docs/current)
 - [FutureWeather](https://eloyespinosa.github.io/Weather.NET/docs/forecast)
 - [OneCallApi](https://eloyespinosa.github.io/Weather.NET/docs/onecall)
-- [WeatherMap](https://eloyespinosa.github.io/Weather.NET/docs/maps)
+- [Maps](https://eloyespinosa.github.io/Weather.NET/docs/maps)
 - [AirPollution](https://eloyespinosa.github.io/Weather.NET/docs/pollution)
 - [Models](https://eloyespinosa.github.io/Weather.NET/docs/models)
   - [OneCallModel](https://eloyespinosa.github.io/Weather.NET/docs/models/onecall)
