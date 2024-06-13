@@ -18,9 +18,8 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static List<CoordinatesByLocationNameResponse> CoordinatesByLocationName(this WeatherClient client,
-        string cityName, string stateCode, string countryCode, int limit) =>
+        string cityName, string stateCode="", string countryCode="", int limit=5) =>
         Task.Run(() => client.CoordinatesByLocationNameAsync(cityName, stateCode, countryCode, limit)).Result;
-
 
     /// <summary>
     /// Converts a zip/postal code to coordinates.
@@ -42,7 +41,7 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static List<LocationNameByCoordinatesResponse> LocationNameByCoordinates(this WeatherClient client,
-        double latitude, double longitude, int limit) =>
+        double latitude, double longitude, int limit=5) =>
         Task.Run(() => client.LocationNameByCoordinatesAsync(latitude, longitude, limit)).Result;
 
     /// <summary>
@@ -55,9 +54,10 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static async Task<List<CoordinatesByLocationNameResponse>> CoordinatesByLocationNameAsync(this WeatherClient client,
-        string cityName, string stateCode, string countryCode, int limit)
+        string cityName, string stateCode="", string countryCode="", int limit=5)
     {
-        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/direct?q={cityName},{stateCode},{countryCode}&limit={limit}&appid={client.ApiKey}");
+        string query = cityName + (stateCode != "" ? "," : "") + stateCode + (countryCode != "" ? "," : "") + countryCode;
+        string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/direct?q={query}&limit={limit}&appid={client.ApiKey}");
         return JsonConvert.DeserializeObject<List<CoordinatesByLocationNameResponse>>(file);
     }
 
@@ -84,7 +84,7 @@ public static class GeoCoding
     /// <param name="limit"> Number of the locations in the API response (up to 5 results can be returned in the API response). </param>
     /// <returns> Returns up to 5 LocationCoordinates that match the query. </returns>
     public static async Task<List<LocationNameByCoordinatesResponse>> LocationNameByCoordinatesAsync(this WeatherClient client,
-        double latitude, double longitude, int limit)
+        double latitude, double longitude, int limit=5)
     {
         string file = await RestApi.GetWebpageStringAsync($"https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit={limit}&appid={client.ApiKey}");
         return JsonConvert.DeserializeObject<List<LocationNameByCoordinatesResponse>>(file);
