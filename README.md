@@ -70,9 +70,11 @@ Added support for OpenWeather's GeoCoding API, including a new model and the met
 - CoordinatesByLocationName and CoordinatesByLocationNameAsync
 - CoordinatesByZipCode and CoordinatesByZipCodeAsync
 - LocationNameByCoordinates and LocationNameByCoordinatesAsync
+
 Reworked WeatherMap class:
 - Renamed class, from WeatherMap to Maps
 - Added support for OpenStreetMap's Base Street Map (methods GetStreetMapUrl and DownloadStreetMap)
 - Clarified parameter usage (tile coordinates vs. geographical coordinates)
 - Added conversion from geographical to tile coordinates (function LatLongToTileCoordinates)
+
 Fixed deadlock issue on synchronous calls to async methods.
